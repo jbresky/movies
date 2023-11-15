@@ -16,7 +16,7 @@ export async function getTitle({ title }: {title: string}){
         const res = await fetch(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=${title}&include_adult=false&language=en-US&page=1`)
         const movie = await res.json()
 
-        return movie
+        return movie.results
 
     } catch(e) {
         throw new Error('Error searching movies')
