@@ -11,6 +11,9 @@ const config: Config = {
       'xl': '1300px'
     },
     extend: {
+      colors: {
+        'grayth': '#929aa5'
+      },
       gridTemplateColumns: {
         'xl': 'repeat(auto-fill, minmax(250px, 1fr))',
         '2xl': 'repeat(auto-fill, minmax(300px, 1fr))'
