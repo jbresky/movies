@@ -1,6 +1,6 @@
 'use client'
 
-import { getTitle } from "@/services/movies"
+import { getTitle, getTopMovies } from "@/services/movies"
 import { useCallback, useState } from "react"
 
 export default function useMovies({title}: {title: string}) {
@@ -19,7 +19,7 @@ export default function useMovies({title}: {title: string}) {
         }
     }, [])
 
-    const getTopMovies = useCallback(async () => {
+    const getTopRanked = useCallback(async () => {
         try {
             setLoading(true)
             const topMovies = await getTopMovies()
@@ -32,6 +32,6 @@ export default function useMovies({title}: {title: string}) {
     }, [])
 
   return {
-    movies, getOneMovie, loading, getTopMovies
+    movies, getOneMovie, loading, getTopRanked
   }
 }
