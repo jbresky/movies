@@ -16,9 +16,10 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
     const [user, setUser] = useState<any>({})
 
     function signUp(email: string, password: string) {
-        createUserWithEmailAndPassword(auth, email, password);
+        createUserWithEmailAndPassword(auth, email, password)
         setDoc(doc(db, 'users', email), {
-            savedMovies: []
+            savedMovies: [],
+            ranking: []
         })
     }
 
