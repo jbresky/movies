@@ -15,7 +15,7 @@ const SignUp = () => {
         e.preventDefault()
         try {
             await signUp(email, password)
-            router.push('/')
+            router.push('/login')
         } catch (error) {
             console.log(error);
         }
@@ -24,25 +24,30 @@ const SignUp = () => {
     return (
         <>
             <form
-            className="bg-neutral-800 flex justify-center items-center m-auto mt-20 flex-col w-[50%] p-10 gap-4"
-            onSubmit={handleSubmit}>
-                <h1>Sign Up</h1>
-                <input
-                    className="rounded-lg bg-slate-500 p-4"
-                    placeholder="Email"
-                    onChange={((e: any) => setEmail(e.target.value))}
-                    value={email}
-                    name='email'
-                />
-                <input
-                    type="password"
-                    className="rounded-lg bg-slate-500 p-4"
-                    placeholder="Password"
-                    onChange={((e: any) => setPassword(e.target.value))}
-                    value={password}
-                    name='password'
-                />
-                <button type="submit">Submit</button>
+                className="border-[#15202b] border-2 rounded-lg flex flex-col justify-center items-start m-auto mt-20 w-fit h-[70vh] px-20 gap-12"
+                onSubmit={handleSubmit}>
+                <div className="flex flex-col gap-4">
+                    <h1 className="font-semibold">Sign Up</h1>
+                    <input
+                        className="rounded-lg bg-[#15202b] p-4 "
+                        placeholder="Email"
+                        onChange={((e: any) => setEmail(e.target.value))}
+                        value={email}
+                        name='email'
+                    />
+                    <input
+                        type="password"
+                        className="rounded-lg bg-[#15202b] p-4"
+                        placeholder="Password"
+                        onChange={((e: any) => setPassword(e.target.value))}
+                        value={password}
+                        name='password'
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <button type="submit" className="font-semibold self-center bg-[#23384e] text-gray-300 py-2 px-24 rounded-lg">Submit</button>
+                    <p className="text-[13px] text-grayth">Have an account? <span className="hover:underline cursor-pointer" onClick={() => router.push('/login')}>Login</span></p>
+                </div>
             </form>
         </>
     );
