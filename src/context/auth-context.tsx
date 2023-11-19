@@ -23,12 +23,23 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
         })
     }
 
-    function logIn(email: string, password: string) {
-        return signInWithEmailAndPassword(auth, email, password)
+    async function logIn(email: string, password: string) {
+        try {
+            return await signInWithEmailAndPassword(auth, email, password)
+        } catch (error) {
+            if (error == "auth/email-already-in-use") {
+                alert("Email already in use")
+            }
+            console.log(error);
+        }
     }
 
-    function logOut() {
-        return signOut(auth)
+    async function logOut() {
+        try {
+            return await signOut(auth)
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useEffect(() => {
