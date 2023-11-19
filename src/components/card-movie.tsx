@@ -7,7 +7,7 @@ import { doc } from "firebase/firestore";
 import Image from "next/image";
 import { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { Movie } from "@/interface/schema";
+import { Movie } from "@/interface/movie-interface";
 import { toast } from 'sonner'
 
 const CardMovie = ({ item }: { item: Movie }) => {

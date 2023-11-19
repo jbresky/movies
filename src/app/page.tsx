@@ -1,10 +1,10 @@
 'use client'
 
-import useMovies from '@/hooks/useMovies'
+import useMovies from '@/hooks/use-movies'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import Loader from '@/components/loader'
 import Header from "@/components/header"
-import { Movie } from "@/interface/schema"
+import { Movie } from "@/interface/movie-interface"
 import { useRouter } from "next/navigation"
 import CardMovie from "@/components/card-movie"
 import { Toaster } from 'sonner'

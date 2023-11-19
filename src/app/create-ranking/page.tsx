@@ -1,10 +1,10 @@
 'use client'
 
-import useMovies from '@/hooks/useMovies'
+import useMovies from '@/hooks/use-movies'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Loader from '@/components/loader'
 import Header from "@/components/header"
-import { Movie } from "@/interface/schema"
+import { Movie } from "@/interface/movie-interface"
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { UserAuth } from '@/context/auth-context'

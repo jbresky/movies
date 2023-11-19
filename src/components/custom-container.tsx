@@ -1,5 +1,5 @@
 'use client'
-import { Movie } from "@/interface/schema";
+import { Movie } from "@/interface/movie-interface";
 import Image from "next/image";
 import { FaMedal } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
