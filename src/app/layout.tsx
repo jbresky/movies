@@ -1,3 +1,4 @@
+import Navbar from '@/components/navbar'
 import { AuthContextProvider } from '@/context/auth-context'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -18,7 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthContextProvider>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <div className="flex min-h-screen max-w-[1700px] m-auto flex-col py-6 px-4 lg:p-10">
+            <Navbar />
+            {children}
+          </div>
+        </body>
       </AuthContextProvider>
     </html>
   )
