@@ -3,16 +3,18 @@
 import useMovies from '@/hooks/use-movies'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Loader from '@/components/loader'
-import Header from "@/components/header"
+import Search from "@/components/search-movies"
 import { Movie } from "@/interface/movie-interface"
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { UserAuth } from '@/context/auth-context'
 import CustomContainer from '@/components/custom-container'
+import { useRouter } from 'next/navigation'
 
 const CreateRanking = () => {
     const [title, setTitle] = useState('')
     const [selectedMovies, setSelectedMovies] = useState<any>([])
+    const router = useRouter()
 
     const { movies, getOneMovie, loading } = useMovies({ title })
 
@@ -41,6 +43,11 @@ const CreateRanking = () => {
         }
     }
 
+    const removeFromRanking = (movieId: any) => {
+        const updatedMovies = selectedMovies.filter((movie: any) => movie.id != movieId)
+        setSelectedMovies(updatedMovies)
+    }
+
     const userID = doc(db, 'users', `${user?.email}`)
 
     const saveRanking = async () => {
@@ -51,19 +58,24 @@ const CreateRanking = () => {
                 })
             })
         }
+        router.push('/account')
     }
 
     return (
-        <div className="flex min-h-screen max-w-[1700px] m-auto flex-col py-6 px-4 lg:p-10 gap-10">
-            <div className="flex flex-col px-3 gap-8">
-                <Header
-                    title={title}
-                    changeSearch={changeSearch}
-                    submitSearch={submitSearch}
-                />
-                <div className="flex justify-between gap-10 text-grayth text-[15px] font-semibold">
+        <>
+            <Search
+                title={title}
+                changeSearch={changeSearch}
+                submitSearch={submitSearch}
+                hidden={true}
+            />
+            <div className="flex flex-col py-4 px-10">
+                <div className="flex justify-between text-grayth text-[15px] font-semibold mb-4">
                     <div className='flex flex-col'>
-                        <h1 className='text-[32px]'>Ranking: Top {selectedMovies.length || ''}</h1>
+                        <h1 className='text-2xl'>
+                            {selectedMovies.length > 0 && "Ranking: Top "}
+                            {selectedMovies.length || ''}
+                        </h1>
                         {selectedMovies.length < 3 && (
                             <p>A ranking must contain at least 3 movies</p>
                         )}
@@ -71,13 +83,14 @@ const CreateRanking = () => {
                     {selectedMovies.length >= 3 && (
                         <button
                             onClick={saveRanking}
-                            className='text-xl border-indigo-800 border-2 rounded-lg px-5 hover:text-black hover:bg-indigo-600 transition duration-500'>Create ranking</button>
+                            className='text-xl border-indigo-900 border-2 rounded-lg px-5 py-2 hover:brightness-150 transition duration-500'>
+                            Create ranking
+                        </button>
                     )}
                 </div>
             </div>
 
-            {/* selected movies container */}
-            <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center">
+            <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center mb-12">
                 {
                     selectedMovies.map((item: Movie) => (
                         <div className="max-xl:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
@@ -85,14 +98,14 @@ const CreateRanking = () => {
                                 classname='text-indigo-900 text-2xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3'
                                 item={item}
                                 isRank={true}
+                                removeFromRanking={() => removeFromRanking(item.id)}
                             />
                         </div>
                     ))
                 }
             </div>
-            {/* selected movies container */}
 
-            <main className="w-full">
+            <main>
                 {
                     loading ? (
                         <Loader />
@@ -116,7 +129,7 @@ const CreateRanking = () => {
                     )
                 }
             </main>
-        </div>
+        </>
     );
 }
 
