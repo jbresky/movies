@@ -1,8 +1,7 @@
 'use client'
 import { Movie } from "@/interface/movie-interface";
 import Image from "next/image";
-import { FaMedal } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+import { FaMedal, FaHeart } from "react-icons/fa";
 
 interface ICustomContainer {
     item: Movie,
@@ -10,14 +9,16 @@ interface ICustomContainer {
     isRank?: boolean | null,
     saveMovie?: () => void,
     addToRanking?: () => void,
+    removeFromRanking?: () => void,
     ref?: any
 }
 
-const CustomContainer = ({ item, classname, isRank, saveMovie, addToRanking, ref }: ICustomContainer) => {
+const CustomContainer = ({ item, classname, isRank, saveMovie, addToRanking, ref, removeFromRanking }: ICustomContainer) => {
     return (
         <>
             <div
                 ref={ref}
+                onClick={addToRanking}
                 className="relative border-[1px] hover:shadow-neutral-800/50 shadow-lg border-transparent transition duration-800 cursor-pointer hover:border-grayth rounded-md">
                 <Image
                     src={`https://image.tmdb.org/t/p/original/${item.img}`}
@@ -31,12 +32,12 @@ const CustomContainer = ({ item, classname, isRank, saveMovie, addToRanking, ref
                     isRank !== null && (
                         isRank ? (
                             <FaMedal
-                                onClick={addToRanking}
+                                onClick={removeFromRanking}
                                 className={classname}
                             />
                         )
                         : (
-                            <FaRegHeart
+                            <FaHeart
                                 onClick={saveMovie}
                                 className={classname}
                             />

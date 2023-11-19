@@ -15,7 +15,6 @@ const CardMovie = ({ item }: { item: Movie }) => {
     const [saved, setSaved] = useState(false)
 
     const { user } = UserAuth()
-    console.log(user.email);
 
     const movieID = doc(db, 'users', `${user?.email}`)
 
@@ -30,7 +29,7 @@ const CardMovie = ({ item }: { item: Movie }) => {
                     img: item.img
                 })
             }).then(() => {
-                toast.message('Added to favorites')
+                toast.message(`Added to your favorites: ${item.title}`)
             })
         } else {
             alert('Please log in to save a movie')
@@ -54,11 +53,11 @@ const CardMovie = ({ item }: { item: Movie }) => {
                         {
                             like ? (
                                 <FaHeart 
-                                    onClick={saveMovie}
+                                    // onClick={saveMovie}
                                     className="text-red-800 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3" />
                             ) : (
                                 <FaRegHeart
-                                    // onClick={saveMovie}
+                                    onClick={saveMovie}
                                     className="text-gray-600 text-xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3"
                                 />
                             )
