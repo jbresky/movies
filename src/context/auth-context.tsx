@@ -5,8 +5,10 @@ import { auth, db } from '../firebase'
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signInWithPopup,
+    GoogleAuthProvider,
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
 } from 'firebase/auth'
 import { setDoc, doc } from 'firebase/firestore'
 
@@ -42,6 +44,17 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
         }
     }
 
+    const googleSignIn = () => {
+        const provider = new GoogleAuthProvider()
+        signInWithPopup(auth, provider)
+        setDoc(doc(db, 'users', provider.providerId), {
+            savedMovies: [],
+            ranking: []
+        })
+    }
+
+
+
     useEffect(() => {
         const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -50,10 +63,10 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
         return () => {
             unsuscribe()
         }
-    })
+    }, [user])
 
     return (
-        <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
+        <AuthContext.Provider value={{ signUp, logIn, googleSignIn, logOut, user }}>
             {children}
         </AuthContext.Provider>
     )
