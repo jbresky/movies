@@ -50,14 +50,14 @@ const Account = () => {
 
     return (
         <>
-            <div className="p-10">
-                <div className="pb-6">
-                    <h1 className="text-3xl">Profile</h1>
+            <div className="sm:p-10 flex flex-col gap-5">
+                <div className="">
+                    <h1 className="text-2xl md:text-3xl">Profile</h1>
                 </div>
 
-                <section className="flex flex-col gap-3 pb-6">
-                    <div className="flex justify-between text-grayth text-[15px] font-semibold">
-                        <h2 className="text-2xl">My Rankings</h2>
+                <section className="flex flex-col gap-10 pb-6">
+                    <div className="flex flex-col xsm:flex-row gap-2 justify-between xsm:items-center text-grayth text-[15px] font-semibold">
+                        <h2 className="text-xl md:text-2xl">My Rankings</h2>
 
                         {ranking?.length > 0 ? (
                             <button
@@ -68,7 +68,7 @@ const Account = () => {
                         ) : (
                             <button
                                 onClick={() => router.push('/create-ranking')}
-                                className="border-indigo-900 border-2 rounded-lg py-2 px-4 hover:brightness-150">Create your first ranking</button>
+                                className="w-full xsm:w-fit sm:w-1/2 md:w-1/4 border-indigo-900 border-2 rounded-lg py-2 px-4 hover:brightness-150">Create your first ranking</button>
                         )}
                     </div>
                     <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-start">
@@ -87,8 +87,8 @@ const Account = () => {
                         }
                     </div>
                 </section>
-                <section className="flex flex-col gap-3">
-                    <h2 className="text-2xl pb-2 text-grayth font-semibold">Favorites</h2>
+                <section className="flex flex-col gap-6">
+                    <h2 className="text-xl md:text-2xl text-grayth font-semibold">Favorites</h2>
                     {movies && movies.length === 0 && (
                         <p className="text-grayth">You don&apos;t have any favorites yet</p>
                     )}
