@@ -1,4 +1,5 @@
 'use client'
+
 import { Movie } from "@/interface/movie-interface";
 import Image from "next/image";
 import { FaMedal, FaHeart } from "react-icons/fa";
@@ -7,13 +8,13 @@ interface ICustomContainer {
     item: Movie,
     classname?: string,
     isRank?: boolean | null,
-    saveMovie?: () => void,
+    removeFromFavorites?: () => void,
     addToRanking?: () => void,
     removeFromRanking?: () => void,
     ref?: any
 }
 
-const CustomContainer = ({ item, classname, isRank, saveMovie, addToRanking, ref, removeFromRanking }: ICustomContainer) => {
+const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRanking, ref, removeFromRanking }: ICustomContainer) => {
     return (
         <>
             <div
@@ -38,14 +39,14 @@ const CustomContainer = ({ item, classname, isRank, saveMovie, addToRanking, ref
                         )
                         : (
                             <FaHeart
-                                onClick={saveMovie}
+                                onClick={removeFromFavorites}
                                 className={classname}
                             />
                         )
                     )
                 }
             </div>
-            <p className="leading-5 text-sm text-grayth">{item.title}</p>
+            <p className="leading-5 text-grayth">{item.title}</p>
         </>
     )
 }
