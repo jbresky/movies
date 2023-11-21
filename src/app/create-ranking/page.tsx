@@ -73,7 +73,7 @@ const CreateRanking = () => {
                 submitSearch={submitSearch}
                 hidden={true}
             />
-            <div className="flex flex-col py-4 px-10">
+            <div className="flex flex-col py-4 sm:px-10">
                 <div className="flex justify-between text-grayth text-[15px] font-semibold mb-4">
                     <div className='flex flex-col'>
                         <h1 className='text-2xl'>
