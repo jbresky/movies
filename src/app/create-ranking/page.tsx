@@ -9,7 +9,7 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { UserAuth } from '@/context/auth-context'
 import CustomContainer from '@/components/custom-container'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 
 const CreateRanking = () => {
     const [title, setTitle] = useState('')
@@ -19,6 +19,10 @@ const CreateRanking = () => {
     const { movies, getOneMovie, loading } = useMovies({ title })
 
     const { user } = UserAuth()
+
+    if(!user){
+        redirect('/')
+    }
 
     const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
