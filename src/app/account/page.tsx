@@ -16,7 +16,7 @@ const Account = () => {
     const router = useRouter()
 
     if(!user){
-        redirect('/login')
+        redirect('/')
     }
 
     useEffect(() => {
