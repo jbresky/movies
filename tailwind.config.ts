@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     screens: {
+      'xsm': '480px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
       'xl': '1300px'
     },
     extend: {
@@ -15,8 +19,9 @@ const config: Config = {
         'grayth': '#929aa5'
       },
       gridTemplateColumns: {
+        'sm': 'repeat(auto-fill, minmax(150px, 1fr))',
         'xl': 'repeat(auto-fill, minmax(250px, 1fr))',
-        '2xl': 'repeat(auto-fill, minmax(300px, 1fr))'
+        '2xl': 'repeat(auto-fill, minmax(270px, 1fr))'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
