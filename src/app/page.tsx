@@ -25,6 +25,7 @@ export default function Home() {
   return (
     <>
       <Toaster />
+      {/* MODAL */}
           <Search
             title={title}
             changeSearch={changeSearch}
@@ -37,7 +38,7 @@ export default function Home() {
             loading ? (
               <Loader />
             ) : (
-              <div className="grid grid-cols-xl xl:grid-cols-2xl gap-6 mt-8 justify-items-center">
+              <div className="grid grid-cols-sm sm:grid-cols-xl md:grid-cols-2xl gap-4 mt-8 justify-items-center">
                 {
                   movies.map((item: Movie) => (
                     <CardMovie item={item} />

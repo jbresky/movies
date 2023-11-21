@@ -3,7 +3,7 @@
 import CustomContainer from "@/components/custom-container";
 import { UserAuth } from "@/context/auth-context";
 import { db } from "@/firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import html2canvas from "html2canvas";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
@@ -15,7 +15,7 @@ const Account = () => {
     const [ranking, setRanking] = useState<any>([])
     const router = useRouter()
 
-    if(!user){
+    if (!user) {
         redirect('/')
     }
 
@@ -48,6 +48,19 @@ const Account = () => {
         }
     }
 
+    const movieRef = doc(db, 'users', `${user?.email}`)
+
+    const removeFromFavorites = async (movieId: string | number) => {
+        try {
+            const result = movies.filter((item: any) => item.id !== movieId)
+            await updateDoc(movieRef, {
+                savedMovies: result
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <div className="sm:p-10 flex flex-col gap-5">
@@ -68,7 +81,7 @@ const Account = () => {
                         ) : (
                             <button
                                 onClick={() => router.push('/create-ranking')}
-                                className="w-full xsm:w-fit sm:w-1/2 md:w-1/4 border-indigo-900 border-2 rounded-lg py-2 px-4 hover:brightness-150">Create your first ranking</button>
+                                className="w-full xsm:w-fit sm:w-1/2 lg:w-1/4 border-indigo-900 border-2 rounded-lg py-2 px-4 hover:brightness-150">Create your first ranking</button>
                         )}
                     </div>
                     <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-start">
@@ -98,6 +111,7 @@ const Account = () => {
                                 <div className="max-xl:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
                                     <CustomContainer
                                         classname='text-red-700 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3'
+                                        removeFromFavorites={() => removeFromFavorites(item.id)}
                                         item={item}
                                         isRank={false}
                                     />
