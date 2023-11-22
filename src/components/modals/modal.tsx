@@ -2,15 +2,17 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from 'react-icons/io'
+import Loader from "../loader";
 
 interface ModalProps {
     isOpen?: boolean,
     onClose: () => void,
     title: string,
-    body?: React.ReactElement
+    body?: React.ReactElement,
+    loading: boolean
 }
 
-const Modal = ({ isOpen, onClose, title, body }: ModalProps) => {
+const Modal = ({ isOpen, onClose, title, body, loading }: ModalProps) => {
 
     const [showModal, setShowModal] = useState(isOpen)
 
@@ -62,27 +64,31 @@ const Modal = ({ isOpen, onClose, title, body }: ModalProps) => {
             ${showModal ? 'opacity-100' : 'opacity-0'}
             
           `}>
-                        <div className="
-               translate
-               h-full
-               lg:h-auto
-               md:h-auto
-               border-0 
-               rounded-lg 
-               shadow-lg 
-               relative 
-               flex 
-               flex-col 
-               w-full 
-               bg-[#060d17]
-               outline-none 
-               focus:outline-none
-                py-4
+                        {loading ? (
+                            <Loader />
+                        ) : (
 
-              "
-                        >
-                            {/*header*/}
                             <div className="
+                        translate
+                        h-full
+                        lg:h-auto
+                        md:h-auto
+                        border-0 
+                        rounded-lg 
+                        shadow-lg 
+                        relative 
+                        flex 
+                        flex-col 
+                        w-full 
+                        bg-[#060d17]
+                        outline-none 
+                        focus:outline-none
+                        py-4
+                        
+                        "
+                            >
+                                {/*header*/}
+                                <div className="
                 flex 
                 items-center 
                 p-6
@@ -92,28 +98,29 @@ const Modal = ({ isOpen, onClose, title, body }: ModalProps) => {
                 border-b-[0.5px]
                 border-gray-700
                 "
-                            >
-                                <div className="text-lg font-semibold">
-                                    {title}
-                                </div>
-                                <button
-                                    className="
-                    p-1
-                    border-0 
-                    hover:opacity-70
-                    transition
-                    absolute
-                    right-9
-                  "
-                                    onClick={handleClose}
                                 >
-                                    <IoMdClose size={18} />
-                                </button>
+                                    <div className="text-lg font-semibold">
+                                        {title}
+                                    </div>
+                                    <button
+                                        className="
+                                    p-1
+                                    border-0 
+                                    hover:opacity-70
+                                    transition
+                                    absolute
+                                    right-9
+                                    "
+                                        onClick={handleClose}
+                                    >
+                                        <IoMdClose size={18} />
+                                    </button>
+                                </div>
+                                <div className="relative max-sm:p-4 p-6 lg:px-10 flex-auto">
+                                    {body}
+                                </div>
                             </div>
-                            <div className="relative max-sm:p-4 p-6 lg:px-10 flex-auto">
-                                {body}
-                            </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
