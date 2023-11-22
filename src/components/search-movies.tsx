@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent } from 'react';
 import { FaSearch } from 'react-icons/fa'
 
-interface NavbarProps {
+interface SearchProps {
   submitSearch: (e: FormEvent<HTMLFormElement>) => void,
   title: string,
   changeSearch: (e: ChangeEvent<HTMLInputElement>) => void,
@@ -14,12 +14,11 @@ interface NavbarProps {
   hidden?: boolean
 }
 
-const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden }: NavbarProps) => {
+const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden }: SearchProps) => {
 
   const { user } = UserAuth()
 
   const loginModal = useLoginModal()
-
 
   const isLoggedInToCreateRanking = () => {
     if (!user) {

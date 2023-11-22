@@ -41,14 +41,11 @@ const CardMovie = ({ item }: { item: Movie }) => {
 
     return (
         <div className="max-sm:w-[150px] max-md:w-[250px] lg:w-[270px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap">
-
-            {item.img && (
                 <>
-                    {/* <Link href={`/?movie=${item.id}`} as={item.id}> */}
                     <div
                         className="relative border-[1px] hover:shadow-neutral-800/50 shadow-lg border-transparent transition duration-800 cursor-pointer hover:border-grayth rounded-md">
                         <Image
-                            src={`https://image.tmdb.org/t/p/original/${item.img}`}
+                            src={item.img !== null ? `https://image.tmdb.org/t/p/original/${item.img}`:'/img/def.avif'}
                             alt={item.title}
                             width={300}
                             height={375}
@@ -68,11 +65,8 @@ const CardMovie = ({ item }: { item: Movie }) => {
                             )
                         }
                     </div>
-                    {/* </Link> */}
                     <p className="leading-5 text-sm text-grayth">{item.title}</p>
                 </>
-            )
-            }
         </div>
     );
 }

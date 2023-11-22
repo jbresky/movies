@@ -39,7 +39,7 @@ const Navbar = () => {
             ? (
               <button
                 onClick={handleLogout}
-                className='w-fit py-2 px-4 rounded-lg bg-[#0a1527] hover:bg-[#15202b] transition duration-200'>
+                className='w-fit py-2 px-4 text-white hover:opacity-80'>
                 Log out
               </button>
             )
