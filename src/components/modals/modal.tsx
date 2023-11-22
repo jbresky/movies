@@ -18,12 +18,12 @@ const Modal = ({ isOpen, onClose, title, body }: ModalProps) => {
         setShowModal(isOpen)
     }, [isOpen])
 
-    const handleClose = useCallback(() => {
+    const handleClose = () => {
         setShowModal(false)
         setTimeout(() => {
             onClose()
         }, 300)
-    }, [onClose])
+    }
 
     if (!isOpen) {
         return null
