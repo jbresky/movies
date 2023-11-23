@@ -15,8 +15,8 @@ const Navbar = () => {
   const { user, logOut } = UserAuth()
 
   const handleLogout = async () => {
-    await logOut()
     router.push('/')
+    await logOut()
   }
 
   const loginModal = useLoginModal()
@@ -69,7 +69,7 @@ const Navbar = () => {
           />
         ) : null
         }
-        {user && !user.photoURL ?(
+        {user && !user.photoURL ? (
           <FaCircleUser
             className='rounded-full xsm:hidden text-2xl bg-indigo-900'
           />
