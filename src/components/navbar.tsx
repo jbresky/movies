@@ -16,7 +16,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await logOut()
-    router.refresh()
+    router.push('/')
   }
 
   const loginModal = useLoginModal()
