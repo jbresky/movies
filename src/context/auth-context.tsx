@@ -17,21 +17,24 @@ const AuthContext = createContext({})
 export function AuthContextProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<any>({})
 
-    function signUp(email: string, password: string) {
-        createUserWithEmailAndPassword(auth, email, password)
-        setDoc(doc(db, 'users', email), {
-            savedMovies: [],
-            ranking: []
-        })
+    async function signUp(email: string, password: string) {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password)
+            setDoc(doc(db, 'users', email), {
+                savedMovies: [],
+                ranking: []
+            })
+        } catch (error: any) {
+            alert(error.errors.message)
+            console.log(error);
+        }
     }
 
     async function logIn(email: string, password: string) {
         try {
             return await signInWithEmailAndPassword(auth, email, password)
-        } catch (error) {
-            if (error == "auth/email-already-in-use") {
-                alert("Email already in use")
-            }
+        } catch (error: any) {
+            alert(error.errors.message)
             console.log(error);
         }
     }
@@ -44,16 +47,23 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
         }
     }
 
-    const googleSignIn = () => {
+    const googleSignIn = async () => {
         const provider = new GoogleAuthProvider()
-        signInWithPopup(auth, provider)
-        setDoc(doc(db, 'users', provider.providerId), {
-            savedMovies: [],
-            ranking: []
-        })
+        try {
+            const result = await signInWithPopup(auth, provider)
+
+            const user: any = result.user
+
+            if (user) {
+                await setDoc(doc(db, 'users', user.email), {
+                    savedMovies: [],
+                    ranking: []
+                })
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
-
-
 
     useEffect(() => {
         const unsuscribe = onAuthStateChanged(auth, (currentUser) => {
