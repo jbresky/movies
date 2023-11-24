@@ -1,19 +1,20 @@
 'use client'
 
 import { UserAuth } from "@/context/auth-context";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "@/firebase";
-import { arrayUnion, updateDoc } from "@firebase/firestore";
-import { doc } from "firebase/firestore";
 import Image from "next/image";
-import { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { Movie } from "@/interface/movie-interface";
 import { toast } from 'sonner'
 import useLoginModal from "@/hooks/use-login-modal";
 
-const CardMovie = ({ item }: { item: Movie }) => {
-    const [like, setLike] = useState(false)
-    const [saved, setSaved] = useState(false)
+interface CardMovieProps {
+    item: Movie,
+    userFavorites: any
+}
+
+const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
 
     const { user } = UserAuth()
 
@@ -25,8 +26,6 @@ const CardMovie = ({ item }: { item: Movie }) => {
         if (!user?.email) {
             loginModal.onOpen()
         } else {
-            setLike(!like)
-            setSaved(true)
             await updateDoc(movieID, {
                 savedMovies: arrayUnion({
                     id: item.id,
@@ -36,6 +35,20 @@ const CardMovie = ({ item }: { item: Movie }) => {
             }).then(() => {
                 toast.message(`Added to your favorites: ${item.title}`)
             })
+        }
+    }
+
+    const movieRef = doc(db, 'users', `${user?.email}`)
+
+    const removeFromFavorites = async (movieId: string | number) => {
+        try {
+            const result = userFavorites.filter((item: any) => item.id !== movieId)
+            await updateDoc(movieRef, {
+                savedMovies: result
+            })
+            toast.message(`Removed from your favorites: ${item.title}`)
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -53,15 +66,15 @@ const CardMovie = ({ item }: { item: Movie }) => {
                             className="rounded-md opacity-0 transition-opacity duration-[2s]"
                         />
                         {
-                            like ? (
+                            userFavorites && userFavorites.some((movie: any) => movie.id == item.id) ? (
                                 <FaHeart
-                                    // onClick={saveMovie}
-                                    className="text-red-800 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3" />
+                                onClick={() => removeFromFavorites(item.id)}
+                                className="text-red-800 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3" />
                             ) : (
                                 <FaRegHeart
-                                    onClick={saveMovie}
-                                    className="text-gray-600 text-xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3"
-                                />
+                                onClick={saveMovie}
+                                className={`text-xl transition duration-200 cursor-pointer absolute top-3 right-3 text-gray-400 hover:text-gray-400}`}
+                            />
                             )
                         }
                     </div>
