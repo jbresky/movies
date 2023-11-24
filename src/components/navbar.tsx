@@ -27,9 +27,9 @@ const Navbar = () => {
       <LoginModal />
       <RegisterModal />
       <header className="flex items-center justify-between gap-2 sm:px-4 mb-3">
-        <button className='text-2xl font-bold' onClick={() => router.push('/')}>
-          Movies
-        </button>
+          <button className='text-2xl font-bold font-mono' onClick={() => router.push('/')}>
+            Movieees
+          </button>
 
         <div className='text-[15px] font-semibold items-center gap-4 hidden sm:flex'>
           {user?.email && (
