@@ -3,17 +3,17 @@
 import CustomContainer from "@/components/custom-container";
 import { UserAuth } from "@/context/auth-context";
 import { db } from "@/firebase";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { arrayRemove, doc, onSnapshot, updateDoc } from "firebase/firestore";
 // import html2canvas from "html2canvas";
 import { redirect, useRouter } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const Account = () => {
     // const componentRef = useRef<any>(null)
     const { user } = UserAuth()
     const [favorites, setFavorites] = useState([])
     const [ranking, setRanking] = useState<any>([])
-    
+
     const router = useRouter()
 
     if (!user) {
@@ -25,7 +25,7 @@ const Account = () => {
             setFavorites(doc.data()?.savedMovies)
             setRanking(doc.data()?.ranking)
         })
-    }, [user?.email]);
+    }, []);
 
     // const handleShare = async () => {
     //     try {
@@ -62,6 +62,17 @@ const Account = () => {
         }
     }
 
+    const removeRanking = async () => {
+        try {
+            await updateDoc(movieRef, {
+                // I may need to change ranking to "savedRankings or similar"
+                ranking: arrayRemove(ranking[0])
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
             <div className="sm:p-10 flex flex-col gap-5">
@@ -74,11 +85,13 @@ const Account = () => {
                         <h2 className="text-xl md:text-2xl">My Rankings</h2>
 
                         {ranking?.length > 0 ? (
+                            // <button
+                            //     className='text-xl border-indigo-800 border-2 rounded-lg p-2 hover:text-black hover:bg-indigo-600 transition duration-500'>
+                            //     Share ranking
+                            // </button>
                             <button
-                                // onClick={handleShare}
-                                className='text-xl border-indigo-800 border-2 rounded-lg p-2 hover:text-black hover:bg-indigo-600 transition duration-500'>
-                                Share ranking
-                            </button>
+                                onClick={removeRanking}
+                                className="text-lg hover:opacity-90 cursor-pointer border-none outline-none">Delete ranking</button>
                         ) : (
                             <button
                                 onClick={() => router.push('/create-ranking')}
@@ -103,7 +116,7 @@ const Account = () => {
                 </section>
                 <section className="flex flex-col gap-6">
                     <h2 className="text-xl md:text-2xl text-grayth font-semibold">Favorites</h2>
-                    {favorites && favorites.length === 0 && (
+                    {!favorites && (
                         <p className="text-grayth">You don&apos;t have any favorites yet</p>
                     )}
                     <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center sm:justify-items-start">
