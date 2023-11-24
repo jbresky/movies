@@ -42,6 +42,7 @@ const RegisterModal = () => {
             toast.success('Welcome!')
         } catch (error) {
             console.log(error);
+            toast.error('Email already in use')
         } finally {
             setLoading(false)
         }
