@@ -3,7 +3,7 @@
 import { UserAuth } from "@/context/auth-context";
 import useLoginModal from "@/hooks/use-login-modal";
 import useRegisterModal from "@/hooks/use-register-modal";
-import { FormEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Modal from "./modal";
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'sonner'
@@ -20,7 +20,7 @@ const LoginModal = () => {
     })
     const [loading, setLoading] = useState(false)
 
-    const { logIn, googleSignIn } = UserAuth()
+    const { logIn, googleSignIn, user } = UserAuth()
 
     const loginModal = useLoginModal()
     const registerModal = useRegisterModal()
@@ -29,8 +29,7 @@ const LoginModal = () => {
         return validateEmail(email.value) && password.value.length >= 5
     }
 
-    const signInWithCredentials = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const signInWithCredentials = async () => {
         try {
             setLoading(true)
             await logIn(email.value, password.value)
@@ -64,16 +63,15 @@ const LoginModal = () => {
 
     const body = (
         <div className="flex flex-col items-center md:m-auto gap-6 w-full">
-            <form onSubmit={signInWithCredentials} className="w-full">
                 <div className="flex flex-col gap-6 w-full mt-4">
                     <div>
                         <input
                             className="w-full rounded-lg border-2 border-indigo-900 bg-transparent outline-none focus:brightness-200 p-4"
                             placeholder="Email"
                             onChange={((e: any) => setEmail({ ...email, value: e.target.value }))}
-                            onBlur={() => { 
-                                setEmail({ ...email, isTouched: true }); 
-                              }} 
+                            onBlur={() => {
+                                setEmail({ ...email, isTouched: true });
+                            }}
                             value={email.value}
                             name='email'
                         />
@@ -87,9 +85,9 @@ const LoginModal = () => {
                             className="w-full rounded-lg border-2 border-indigo-900 bg-transparent outline-none focus:brightness-200 p-4"
                             placeholder="Password"
                             onChange={((e: any) => setPassword({ ...password, value: e.target.value }))}
-                            onBlur={() => { 
-                                setPassword({ ...password, isTouched: true }); 
-                              }} 
+                            onBlur={() => {
+                                setPassword({ ...password, isTouched: true });
+                            }}
                             value={password.value}
                             name='password'
                         />
@@ -99,12 +97,11 @@ const LoginModal = () => {
                     </div>
                     <button
                         disabled={!isFormValid()}
-                        type="submit"
+                        onClick={signInWithCredentials}
                         className="w-full font-semibold self-center bg-indigo-900 text-gray-300 py-2 rounded-lg focus:brightness-200">
                         Continue
                     </button>
                 </div>
-            </form>
             <div className="flex flex-col gap-4 w-full items-center">
                 <p>or</p>
                 <div
