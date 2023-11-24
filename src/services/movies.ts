@@ -9,7 +9,7 @@ export async function getTopMovies(){
             id: movie.id,
             title: movie.title,
             img: movie.poster_path,
-            overview: movie.overview
+            // overview: movie.overview
         }))
     } catch(e) {
         throw new Error('Error searching movies')
@@ -25,7 +25,7 @@ export async function getTitle({ title }: {title: string}){
             id: movie.id,
             title: movie.title,
             img: movie.poster_path,
-            overview: movie.overview
+            // overview: movie.overview
         }))
 
     } catch(e) {
