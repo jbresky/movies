@@ -4,19 +4,22 @@ import { UserAuth } from '@/context/auth-context';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import LoginModal from './modals/login-modal';
 import RegisterModal from './modals/register-modal';
 import { FaCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const router = useRouter()
+  const path = usePathname()
 
   const { user, logOut } = UserAuth()
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     router.push('/')
-    await logOut()
+    setTimeout(async () => {
+      await logOut()
+    }, 300)
   }
 
   const loginModal = useLoginModal()
@@ -30,11 +33,9 @@ const Navbar = () => {
           <button className='text-2xl font-bold font-mono' onClick={() => router.push('/')}>
             Movieees
           </button>
-
         <div className='text-[15px] font-semibold items-center gap-4 hidden sm:flex'>
-          {user?.email && (
-            <button onClick={() => router.push('/account')}>Profile</button>
-          )}
+          {user?.email && path !== '/account' ? <button onClick={() => router.push('/account')}>Profile</button> : null}
+          {user?.email && path === '/account' ? <button onClick={() => router.push('/create-ranking')}>Create ranking</button> : null}
           {user && user?.email
             ? (
               <button
