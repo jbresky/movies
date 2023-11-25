@@ -26,7 +26,7 @@ const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRa
                     alt={item.title}
                     width={300}
                     height={375}
-                    onLoadingComplete={image => image.classList.remove("opacity-0")}
+                    onLoad={(e: any) => e.target.classList.remove("opacity-0")}
                     className="rounded-md opacity-0 transition-opacity duration-[2s]"
                 />
                 {
