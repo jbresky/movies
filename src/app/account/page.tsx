@@ -4,12 +4,11 @@ import CustomContainer from "@/components/custom-container";
 import { UserAuth } from "@/context/auth-context";
 import { db } from "@/firebase";
 import { arrayRemove, doc, onSnapshot, updateDoc } from "firebase/firestore";
-// import html2canvas from "html2canvas";
 import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Account = () => {
-    // const componentRef = useRef<any>(null)
     const { user } = UserAuth()
     const [favorites, setFavorites] = useState([])
     const [ranking, setRanking] = useState<any>([])
@@ -23,7 +22,8 @@ const Account = () => {
     useEffect(() => {
         onSnapshot(doc(db, 'users', `${user?.email}`), doc => {
             setFavorites(doc.data()?.savedMovies)
-            setRanking(doc.data()?.ranking)
+            const rankings = doc.data()?.ranking || []
+            setRanking(rankings)
         })
     }, []);
 
@@ -62,12 +62,12 @@ const Account = () => {
         }
     }
 
-    const removeRanking = async () => {
+    const removeRanking = async (index: number) => {
         try {
             await updateDoc(movieRef, {
-                // I may need to change ranking to "savedRankings or similar"
-                ranking: arrayRemove(ranking[0])
+                ranking: arrayRemove(ranking[index])
             })
+            toast.success('Ranking deleted')
         } catch (error) {
             console.log(error)
         }
@@ -75,48 +75,59 @@ const Account = () => {
 
     return (
         <>
-            <div className="sm:p-10 flex flex-col gap-5">
-                <div className="">
+            <div className="sm:p-4 flex flex-col gap-5">
+                {/* <div className="">
                     <h1 className="text-2xl md:text-3xl">Profile</h1>
-                </div>
+                </div> */}
 
-                <section className="flex flex-col gap-10 pb-6">
-                    <div className="flex flex-col xsm:flex-row gap-2 justify-between xsm:items-center text-grayth text-[15px] font-semibold">
-                        <h2 className="text-xl md:text-2xl">My Rankings</h2>
+                <section className="flex flex-col gap-5 pb-6">
+                    <div className="flex flex-col xsm:flex-row gap-2 justify-between xsm:items-end text-grayth text-[15px] font-semibold">
+                        <div className="flex flex-col gap-2 items-start">
+                            <h2 className="text-xl md:text-2xl">Rankings</h2>
+                        </div>
 
                         {ranking?.length > 0 ? (
                             // <button
                             //     className='text-xl border-indigo-800 border-2 rounded-lg p-2 hover:text-black hover:bg-indigo-600 transition duration-500'>
                             //     Share ranking
                             // </button>
-                            <button
-                                onClick={removeRanking}
-                                className="text-lg hover:opacity-90 cursor-pointer border-none outline-none">Delete ranking</button>
+                            ''
                         ) : (
                             <button
                                 onClick={() => router.push('/create-ranking')}
-                                className="w-full xsm:w-fit sm:w-1/2 lg:w-1/4 border-indigo-900 border-2 rounded-lg py-2 px-4 hover:brightness-150">Create your first ranking</button>
+                                className="w-full xsm:w-fit sm:w-1/2 lg:w-1/4 border-indigo-900 border-2 rounded-lg py-2 px-4 hover:brightness-150">Create a ranking</button>
                         )}
                     </div>
-                    <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center sm:justify-items-start">
-                        {
-                            ranking && ranking[0]?.selectedMovies.map((item: any) => (
-                                <div
-                                    className="max-xl:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
-                                    <CustomContainer
-                                        // ref={componentRef}
-                                        item={item}
-                                        isRank={true}
-                                        classname="text-grayth/60 text-2xl transition duration-200 cursor-pointer absolute top-3 right-3"
-                                    />
+
+                    {
+                        ranking && ranking.map((rank: any, index: number) => (
+                            <>
+                            {/* {console.log(ranking.indexOf(rank))} */}
+                                <div className="flex justify-between items-center">
+                                    <h2 key={index} className="text-indigo-400 text-xl font-semibold">{rank.name}</h2>
+                                    <button
+                                        onClick={() => removeRanking((ranking.indexOf(rank)))}
+                                        className="hover:opacity-90 text-grayth cursor-pointer border-none outline-none">Delete</button>
                                 </div>
-                            ))
-                        }
-                    </div>
+                                <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center sm:justify-items-start">
+                                    {rank.movies && rank.movies.map((item: any) => (
+                                        <div
+                                            className="max-xl:w-[220px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
+                                            <CustomContainer
+                                                item={item}
+                                                isRank={true}
+                                                classname="text-grayth/60 text-2xl transition duration-200 cursor-pointer absolute top-3 right-3"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            </>
+                        ))
+                    }
                 </section>
                 <section className="flex flex-col gap-6">
                     <h2 className="text-xl md:text-2xl text-grayth font-semibold">Favorites</h2>
-                    {!favorites && (
+                    {favorites?.length < 1 && (
                         <p className="text-grayth">You don&apos;t have any favorites yet</p>
                     )}
                     <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center sm:justify-items-start">
