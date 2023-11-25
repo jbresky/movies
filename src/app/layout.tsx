@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <AuthContextProvider>
         <body className={inter.className}>
-          <div className="flex min-h-screen max-w-[1700px] m-auto flex-col py-6 px-4 lg:p-10">
+          <div className="flex min-h-screen max-w-[1700px] m-auto flex-col py-6 px-4 lg:px-10">
             <Navbar />
             {children}
           </div>
