@@ -1,12 +1,12 @@
 'use client'
 
-import { UserAuth } from '@/context/auth-context';
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
-import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
-import LoginModal from './modals/login-modal';
 import RegisterModal from './modals/register-modal';
+import LoginModal from './modals/login-modal';
+import Image from 'next/image';
+import { UserAuth } from '@/context/auth-context';
+import { usePathname, useRouter } from 'next/navigation';
 import { FaCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
@@ -25,6 +25,14 @@ const Navbar = () => {
   const loginModal = useLoginModal()
   const registerModal = useRegisterModal()
 
+  const isLoggedInToCreateRanking = () => {
+    if (!user) {
+      loginModal.onOpen()
+    } else {
+      router.push('/create-ranking')
+    }
+  }
+
   return (
     <>
       <LoginModal />
@@ -33,14 +41,14 @@ const Navbar = () => {
           <button className='text-2xl font-bold font-mono' onClick={() => router.push('/')}>
             Movieees
           </button>
-        <div className='text-[15px] font-semibold items-center gap-4 hidden sm:flex'>
-          {user?.email && path !== '/account' ? <button onClick={() => router.push('/account')}>Profile</button> : null}
-          {user?.email && path === '/account' ? <button onClick={() => router.push('/create-ranking')}>Create ranking</button> : null}
+        <div className='text-[15px] font-semibold items-center gap-6 hidden sm:flex'>
+          {user?.email && path !== '/create-ranking' ? <button className='hover:opacity-80' onClick={isLoggedInToCreateRanking}>Create ranking</button> : null}
+          {user?.email && path !== '/account' ? <button className='hover:opacity-80' onClick={() => router.push('/account')}>Profile</button> : null}
           {user && user?.email
             ? (
               <button
                 onClick={handleLogout}
-                className='w-fit py-2 px-4 text-white hover:opacity-80'>
+                className='w-fit text-white hover:opacity-80'>
                 Log out
               </button>
             )
@@ -48,12 +56,12 @@ const Navbar = () => {
               <div className='flex items-center gap-3'>
                 <button
                   onClick={registerModal.onOpen}
-                  className='w-fit py-2 px-4 rounded-lg text-white hover:opacity-80'>
+                  className='w-fit rounded-lg py-2 px-4 text-white hover:opacity-80'>
                   Sign Up
                 </button>
                 <button
                   onClick={loginModal.onOpen}
-                  className='w-fit py-2 px-4 bg-slate-800 rounded-lg text-white hover:opacity-80'>
+                  className='w-fit bg-slate-800 py-2 px-4 rounded-lg text-white hover:opacity-80'>
                   Log in
                 </button>
               </div>
