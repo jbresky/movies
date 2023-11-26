@@ -34,17 +34,9 @@ const CreateRanking = () => {
         getOneMovie({ title })
     }
 
-    const {
-        selectedMovies,
-        load,
-        nameOfRanking,
-        submitNameOfRanking,
-        rankingReady,
-        addToRanking,
-        removeFromRanking,
-        saveRanking,
-        changeRankingName
-    } = useCreate()
+    const createRankingProps = useCreate()
+
+    const { selectedMovies, addToRanking, removeFromRanking } = createRankingProps
 
     return (
         <>
@@ -55,15 +47,9 @@ const CreateRanking = () => {
                 submitSearch={submitSearch}
                 hidden={true}
             />
-            <SelectedMovies
-             selectedMovies={selectedMovies}
-             rankingReady={rankingReady}
-             nameOfRanking={nameOfRanking}
-             saveRanking={saveRanking}
-             load={load}
-             changeRankingName={changeRankingName}
-             submitNameOfRanking={submitNameOfRanking}
-            />
+
+            <SelectedMovies {...createRankingProps}/>
+
             <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center mb-12`}>
                 {
                     selectedMovies.map((item: Movie) => (
