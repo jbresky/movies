@@ -1,29 +1,22 @@
 'use client'
 
-import useMovies from '@/hooks/use-movies'
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import Loader from '@/components/loader'
 import Search from "@/components/search-movies"
-import { Movie } from "@/interface/movie-interface"
 import CardMovie from "@/components/card-movie"
+import useSearch from '@/hooks/use-search'
+import useMovies from '@/hooks/use-movies'
+import useFavorites from '@/hooks/use-saved-movies'
+import { ChangeEvent, FormEvent } from 'react'
 import { Toaster } from 'sonner'
-import { UserAuth } from '@/context/auth-context'
-import { doc, onSnapshot } from '@firebase/firestore'
-import { db } from '@/firebase'
+import type { Movie } from "@/interface/movie-interface"
 
 export default function Home() {
-  const [title, setTitle] = useState('')
-  const [favorites, setFavorites] = useState<any>([])
-  
-  const { movies, getOneMovie, getTopRanked, loading } = useMovies({ title })
-  
-  const { user } = UserAuth()
 
-  useEffect(() => {
-    onSnapshot(doc(db, 'users', `${user?.email}`), doc => {
-      setFavorites(doc.data()?.savedMovies)
-    })
-  }, [user?.email])
+  const { title, setTitle } = useSearch()
+
+  const { movies, getOneMovie, getTopRanked, loading } = useMovies({ title })
+
+  const { favorites } = useFavorites()
 
   const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)

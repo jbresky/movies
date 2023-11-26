@@ -19,8 +19,8 @@ const config: Config = {
         'grayth': '#929aa5'
       },
       gridTemplateColumns: {
-        'sm': 'repeat(auto-fill, minmax(150px, 1fr))',
-        'xl': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'sm': 'repeat(auto-fill, minmax(170px, 1fr))',
+        'xl': 'repeat(auto-fill, minmax(220px, 1fr))',
         '2xl': 'repeat(auto-fill, minmax(270px, 1fr))'
       },
       backgroundImage: {
