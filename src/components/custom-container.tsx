@@ -17,6 +17,7 @@ interface ICustomContainer {
 const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRanking, ref, removeFromRanking }: ICustomContainer) => {
     return (
         <>
+        <div className="w-[170px] md:w-[200px] lg:w-[250px] xl:w-[300px] flex flex-col gap-2 rounded-md">
             <div
                 ref={ref}
                 onClick={addToRanking}
@@ -46,7 +47,8 @@ const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRa
                     )
                 }
             </div>
-            <p className="leading-5 text-grayth">{item.title}</p>
+            <p className="leading-5 text-grayth text-sm">{item.title}</p>
+            </div>
         </>
     )
 }

@@ -6,18 +6,18 @@ import CustomContainer from '@/components/custom-container'
 import Loader from '@/components/loader'
 import useMovies from '@/hooks/use-movies'
 import useCreate from '@/hooks/use-create'
+import useSearch from '@/hooks/use-search'
 import { UserAuth } from '@/context/auth-context'
 import { Movie } from "@/interface/movie-interface"
 import { redirect } from 'next/navigation'
 import { Toaster } from 'sonner'
-import useSearch from '@/hooks/use-search'
 import { ChangeEvent, FormEvent } from 'react'
 
 const CreateRanking = () => {
 
     const { title, setTitle } = useSearch()
     
-    const { movies, getOneMovie, loading } = useMovies({ title })
+    const { movies, getOneMovie, loading } = useMovies()
 
     const { user } = UserAuth()
 
@@ -50,17 +50,16 @@ const CreateRanking = () => {
 
             <SelectedMovies {...createRankingProps}/>
 
-            <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center mb-12`}>
+            <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8`}>
                 {
                     selectedMovies.map((item: Movie) => (
-                        <div className="max-xl:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
                             <CustomContainer
+                                key={item.id}
                                 classname='text-indigo-900 text-2xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3'
                                 item={item}
                                 isRank={true}
                                 removeFromRanking={() => removeFromRanking(item.id)}
                             />
-                        </div>
                     ))
                 }
             </div>
@@ -70,10 +69,10 @@ const CreateRanking = () => {
                     loading ? (
                         <Loader />
                     ) : (
-                        <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center">
+                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8">
                             {
                                 movies.map((item: Movie) => (
-                                    <div className="max-xl:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
+                                    <div key={item.id}>
                                         {item.img && (
                                             <CustomContainer
                                                 item={item}

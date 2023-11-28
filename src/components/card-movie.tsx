@@ -53,7 +53,7 @@ const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
     }
 
     return (
-        <div className="max-sm:w-[170px] max-md:w-[250px] lg:w-[270px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap">
+        <div className="w-[170px] md:w-[200px] lg:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap">
             {item.img !== null && (
                 <>
                     <div

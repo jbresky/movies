@@ -17,10 +17,10 @@ const Favorites = ({ favorites, removeFromFavorites }: FavoritesProps) => {
                 title="Favorites"
                 paragraph="You don't have favorites yet"
             />
-            <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center sm:justify-items-start">
+            <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8">
                 {
                     favorites?.map((item: any) => (
-                        <div className="max-xl:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
+                        <div className="" key={item.id}>
                             <CustomContainer
                                 classname='text-red-700 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3'
                                 removeFromFavorites={() => removeFromFavorites(item.id)}

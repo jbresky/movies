@@ -20,8 +20,9 @@ const config: Config = {
       },
       gridTemplateColumns: {
         'sm': 'repeat(auto-fill, minmax(170px, 1fr))',
-        'xl': 'repeat(auto-fill, minmax(220px, 1fr))',
-        '2xl': 'repeat(auto-fill, minmax(270px, 1fr))'
+        'md': 'repeat(auto-fill, minmax(200px, 1fr))',
+        'lg': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'xl': 'repeat(auto-fill, minmax(300px, 1fr))'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

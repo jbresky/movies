@@ -36,10 +36,11 @@ const Rankings = ({ ranking, removeRanking }: RankingsProps) => {
                                 onClick={() => removeRanking(ranking.indexOf(rank))}
                                 className="hover:opacity-90 text-grayth cursor-pointer border-none outline-none">Delete</button>
                         </div>
-                        <div className="grid grid-cols-xl xl:grid-cols-2xl gap-4 justify-items-center sm:justify-items-start">
+                        
+                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8">
                             {rank.movies && rank.movies.map((item: any) => (
                                 <div
-                                    className="max-xl:w-[220px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap" key={item.id}>
+                                    className="" key={item.id}>
                                     <CustomContainer
                                         item={item}
                                         isRank={true}
