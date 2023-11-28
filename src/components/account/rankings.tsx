@@ -12,7 +12,7 @@ interface RankingsProps {
 const Rankings = ({ ranking, removeRanking }: RankingsProps) => {
 
     return (
-        <section className="flex flex-col gap-5 pb-6">
+        <section className="flex flex-col gap-4">
             <div className="flex flex-col xsm:flex-row gap-2 justify-between xsm:items-end text-[15px]">
                 <AccountHeader
                     data={ranking}
@@ -37,7 +37,7 @@ const Rankings = ({ ranking, removeRanking }: RankingsProps) => {
                                 className="hover:opacity-90 text-grayth cursor-pointer border-none outline-none">Delete</button>
                         </div>
                         
-                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8">
+                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4">
                             {rank.movies && rank.movies.map((item: any) => (
                                 <div
                                     className="" key={item.id}>
