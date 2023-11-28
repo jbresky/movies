@@ -9,20 +9,32 @@ import { toast } from "sonner";
 const useSavedMovies = () => {
     const [favorites, setFavorites] = useState([])
     const [ranking, setRanking] = useState<any>([])
+    const [loading, setLoading] = useState(false)
 
     const { user } = UserAuth()
 
     useEffect(() => {
-        onSnapshot(doc(db, 'users', `${user?.email}`), doc => {
-          setFavorites(doc.data()?.savedMovies)
-          const rankings = doc.data()?.ranking || []
-          setRanking(rankings)
-        })
-      }, [user?.email])
+        const fetchMovies = () => {
+            try {
+                setLoading(true)
+                onSnapshot(doc(db, 'users', `${user?.email}`), doc => {
+                    setFavorites(doc.data()?.savedMovies)
+                    const rankings = doc.data()?.ranking || []
+                    setRanking(rankings)
+                })
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchMovies()
+    }, [user?.email])
 
     const movieRef = doc(db, 'users', `${user?.email}`)
 
-      const removeFromFavorites = async (movieId: string | number) => {
+    const removeFromFavorites = async (movieId: string | number) => {
         try {
             const result = favorites.filter((item: any) => item.id !== movieId)
             await updateDoc(movieRef, {
@@ -45,8 +57,8 @@ const useSavedMovies = () => {
     }
 
     return {
-        favorites, ranking, removeFromFavorites, removeRanking
+        favorites, ranking, removeFromFavorites, removeRanking, loading
     }
 }
- 
+
 export default useSavedMovies;
