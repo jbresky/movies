@@ -25,7 +25,7 @@ const SelectedMovies = ({
 }: SelectedMoviesProps) => {
 
     return (
-        <div className="flex flex-col py-4 sm:px-5">
+        <div className="flex flex-col sm:px-5">
             <div className="flex flex-col xsm:flex-row justify-between xsm:items-center text-grayth text-[15px] font-semibold mb-4">
                 <div className='flex flex-col'>
                     <h1 className='text-lg sm:text-2xl'>

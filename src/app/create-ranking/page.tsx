@@ -50,7 +50,7 @@ const CreateRanking = () => {
 
             <SelectedMovies {...createRankingProps}/>
 
-            <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8`}>
+            <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 my-8`}>
                 {
                     selectedMovies.map((item: Movie) => (
                             <CustomContainer

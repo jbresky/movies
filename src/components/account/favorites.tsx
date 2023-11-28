@@ -17,7 +17,7 @@ const Favorites = ({ favorites, removeFromFavorites }: FavoritesProps) => {
                 title="Favorites"
                 paragraph="You don't have favorites yet"
             />
-            <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8">
+            <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4">
                 {
                     favorites?.map((item: any) => (
                         <div className="" key={item.id}>
