@@ -8,7 +8,7 @@ interface SearchProps {
   changeSearch: (e: ChangeEvent<HTMLInputElement>) => void,
   getTopRanked?: () => void,
   hidden?: boolean,
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, children }: SearchProps) => {
@@ -18,7 +18,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
       {!hidden && (
         <div className={`justify-between gap-4 text-grayth text-[15px] font-semibold hidden sm:flex`}>
           <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer" onClick={getTopRanked}>Top ranked</h3>
-          {children}
+          {children ? children : ''}
         </div>
       )}
       <form onSubmit={submitSearch} className="w-full xsm:w-[300px]">
