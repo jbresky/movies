@@ -14,7 +14,7 @@ export default function Home() {
 
   const { title, setTitle } = useSearch()
 
-  const { movies, getOneMovie, getTopRanked, loading } = useMovies({ title })
+  const { movies, getTopRanked, loading, getOneMovie, getByGenre } = useMovies()
 
   const { favorites } = useFavorites()
 
@@ -35,14 +35,20 @@ export default function Home() {
         changeSearch={changeSearch}
         submitSearch={submitSearch}
         getTopRanked={getTopRanked}
-      />
+      >
+          <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer" onClick={() => getByGenre('35')}>Comedy</h3>
+          <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer" onClick={() => getByGenre('18')}>Drama</h3>
+          <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer" onClick={() => getByGenre('28')}>Action</h3>
+          <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer" onClick={() => getByGenre('53')}>Thriller</h3>
+          <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer" onClick={() => getByGenre('27')}>Horror</h3>
+      </Search>
 
       <main className="w-full">
         {
           loading ? (
             <Loader />
           ) : (
-            <div className="grid grid-cols-sm sm:grid-cols-xl md:grid-cols-2xl gap-4 mt-8 justify-items-center">
+            <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8 justify-items-center">
               {
                 movies.map((item: Movie) => (
                   <CardMovie
