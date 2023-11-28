@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { UserAuth } from '@/context/auth-context';
 import { usePathname, useRouter } from 'next/navigation';
 import { FaCircleUser } from "react-icons/fa6";
+import Link from 'next/link';
 
 const Navbar = () => {
   const router = useRouter()
@@ -37,13 +38,13 @@ const Navbar = () => {
     <>
       <LoginModal />
       <RegisterModal />
-      <header className="flex items-center justify-between gap-2 sm:px-4 mb-3">
-          <button className='text-2xl font-bold font-mono' onClick={() => router.push('/')}>
+      <header className="flex items-center justify-between gap-2 sm:p-4">
+        <Link href='/' className='text-2xl font-bold font-mono py-2'>
             Movieees
-          </button>
+        </Link>
         <div className='text-[15px] font-semibold items-center gap-6 hidden sm:flex'>
-          {user?.email && path !== '/create-ranking' ? <button className='hover:opacity-80' onClick={isLoggedInToCreateRanking}>Create ranking</button> : null}
-          {user?.email && path !== '/account' ? <button className='hover:opacity-80' onClick={() => router.push('/account')}>Profile</button> : null}
+          {user?.email && path !== '/create-ranking' ? <Link href='/create-ranking' className='hover:opacity-80'>Create ranking</Link> : null}
+          {user?.email && path !== '/account' ? <Link href='/account' className='hover:opacity-80'>Profile</Link> : null}
           {user && user?.email
             ? (
               <button
