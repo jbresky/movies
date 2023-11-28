@@ -26,21 +26,13 @@ const Navbar = () => {
   const loginModal = useLoginModal()
   const registerModal = useRegisterModal()
 
-  const isLoggedInToCreateRanking = () => {
-    if (!user) {
-      loginModal.onOpen()
-    } else {
-      router.push('/create-ranking')
-    }
-  }
-
   return (
     <>
       <LoginModal />
       <RegisterModal />
       <header className="flex items-center justify-between gap-2 sm:p-4">
         <Link href='/' className='text-2xl font-bold font-mono py-2'>
-            Movieees
+            Mov
         </Link>
         <div className='text-[15px] font-semibold items-center gap-6 hidden sm:flex'>
           {user?.email && path !== '/create-ranking' ? <Link href='/create-ranking' className='hover:opacity-80'>Create ranking</Link> : null}
@@ -69,21 +61,20 @@ const Navbar = () => {
             )
           }
         </div>
-        {user && user.photoURL ? (
+        {user && user.photoURL && (
           <Image
-            className='rounded-full xsm:hidden'
+            className='rounded-full sm:hidden'
             width={40}
             height={40}
             alt={user.email}
             src={user.photoURL}
           />
-        ) : null
-        }
-        {user && !user.photoURL ? (
+        )}
+        {user && !user.photoURL && (
           <FaCircleUser
-            className='rounded-full xsm:hidden text-2xl bg-indigo-900'
+            className='rounded-full sm:hidden text-2xl bg-indigo-900'
           />
-        ) : null}
+        )}
       </header>
     </>
   );
