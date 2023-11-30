@@ -5,34 +5,67 @@ import { db } from "@/firebase"
 import { Movie } from "@/interface/movie-interface"
 import { arrayUnion, doc, updateDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useReducer } from "react"
 import { toast } from "sonner"
 
-const useCreate = () => {
-    const [selectedMovies, setSelectedMovies] = useState<any>([])
-    const [nameOfRanking, setNameOfRanking] = useState('')
-    const [rankingReady, setRankingReady] = useState(false)
-    const [load, setLoad] = useState(false)
+interface State {
+    selectedMovies: Movie[],
+    nameOfRanking: string,
+    rankingReady: boolean,
+    load: boolean
+}
 
+type Action =
+    | { type: 'SET_NAME'; payload: string }
+    | { type: 'SET_RANKING_READY'; payload: boolean }
+    | { type: 'ADD_TO_RANKING'; payload: Movie }
+    | { type: 'REMOVE_FROM_RANKING'; payload: string }
+    | { type: 'SET_LOAD'; payload: boolean }
+
+
+const initialState: State = {
+    selectedMovies: [],
+    nameOfRanking: '',
+    rankingReady: false,
+    load: false
+}
+
+const reducer = (state: State, action: Action): State => {
+    switch (action.type) {
+        case 'SET_NAME':
+            return { ...state, nameOfRanking: action.payload }
+        case 'SET_RANKING_READY':
+            return { ...state, rankingReady: action.payload }
+        case 'ADD_TO_RANKING':
+            return { ...state, selectedMovies: [...state.selectedMovies, action.payload] }
+        case 'SET_LOAD':
+            return { ...state, load: action.payload }
+        default:
+            return state
+    }
+}
+
+const useCreate = () => {
+    const [state, dispatch] = useReducer(reducer, initialState)
+    
     const router = useRouter()
 
     const { user } = UserAuth()
 
     const submitNameOfRanking = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setRankingReady(true)
+        dispatch({ type: 'SET_RANKING_READY', payload: true })
     }
 
     const addToRanking = ({ item }: { item: Movie }) => {
-        const isSelected = selectedMovies.some((movie: any) => movie.id == item.id)
+        const isSelected = state.selectedMovies.some((movie: any) => movie.id == item.id)
 
-        if (selectedMovies.length === 10) {
+        if (state.selectedMovies.length === 10) {
             toast.message('10 movies are the maximum')
             return
         }
-
         if (!isSelected) {
-            setSelectedMovies(() => [...selectedMovies, item])
+            dispatch({ type: 'ADD_TO_RANKING', payload: item })
         } else {
             toast.message('Movie already selected')
             return
@@ -40,44 +73,40 @@ const useCreate = () => {
     }
 
     const changeRankingName = (e: ChangeEvent<HTMLInputElement>) => {
-        setNameOfRanking(e.target.value)
+        dispatch({ type: 'SET_NAME', payload: e.target.value })
     }
 
     const removeFromRanking = (movieId: string) => {
-        const updatedMovies = selectedMovies.filter((movie: any) => movie.id != movieId)
-        setSelectedMovies(updatedMovies)
+       dispatch({ type: 'REMOVE_FROM_RANKING', payload: movieId })
     }
 
     const userID = doc(db, 'users', `${user?.email}`)
 
     const saveRanking = async () => {
         try {
-            setLoad(true)
+            dispatch({ type: 'SET_LOAD', payload: true })
             await updateDoc(userID, {
                 ranking: arrayUnion({
-                    name: nameOfRanking,
-                    movies: selectedMovies
+                    name: state.nameOfRanking,
+                    movies: state.selectedMovies
                 })
             })
             router.push('/account')
         } catch (error) {
             console.log(error);
         } finally {
-            setLoad(false)
+            dispatch({ type: 'SET_LOAD', payload: false })
         }
     }
 
     return {
-        selectedMovies,
-        load,
-        nameOfRanking,
+        ...state,
         changeRankingName,
         submitNameOfRanking,
-        rankingReady,
         addToRanking,
         removeFromRanking,
         saveRanking,
     }
 }
- 
+
 export default useCreate;
