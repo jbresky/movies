@@ -30,9 +30,9 @@ const Navbar = () => {
     <>
       <LoginModal />
       <RegisterModal />
-      <header className="flex items-center justify-between gap-2 sm:p-4">
+      <header className="sm:flex items-center justify-between gap-2 hidden sm:p-4">
         <Link href='/' className='text-2xl font-bold font-mono py-2'>
-            Mov
+            Movieees
         </Link>
         <div className='text-[15px] font-semibold items-center gap-6 hidden sm:flex'>
           {user?.email && path !== '/create-ranking' ? <Link href='/create-ranking' className='hover:opacity-80'>Create ranking</Link> : null}
