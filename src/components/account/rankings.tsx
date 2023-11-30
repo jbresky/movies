@@ -21,7 +21,7 @@ const Rankings = ({ ranking, removeRanking }: RankingsProps) => {
                 />
                 {ranking?.length > 0 && (
                     <button
-                        className='text-xl border-indigo-800 border-2 rounded-lg p-2 hover:text-black hover:bg-indigo-600 transition duration-500'>
+                        className='text-lg border-indigo-800 border-2 rounded-lg px-4 py-1 hover:text-black hover:bg-indigo-600 transition duration-500'>
                         Share ranking
                     </button>
                 )}
@@ -31,13 +31,13 @@ const Rankings = ({ ranking, removeRanking }: RankingsProps) => {
                 ranking && ranking.map((rank: any, index: number) => (
                     <>
                         <div className="flex justify-between items-center">
-                            <h2 key={index} className="text-indigo-400 text-xl font-semibold">{rank.name}</h2>
+                            <h2 key={index} className="text-indigo-400 text-lg font-semibold">{rank.name}</h2>
                             <button
                                 onClick={() => removeRanking(ranking.indexOf(rank))}
                                 className="hover:opacity-90 text-grayth cursor-pointer border-none outline-none">Delete</button>
                         </div>
                         
-                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4">
+                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mb-4">
                             {rank.movies && rank.movies.map((item: any) => (
                                 <div
                                     className="" key={item.id}>
