@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from 'react-icons/io'
 import Loader from "../loader";
 
@@ -22,9 +22,9 @@ const Modal = ({ isOpen, onClose, title, body, loading }: ModalProps) => {
 
     const handleClose = () => {
         setShowModal(false)
-        setTimeout(() => {
-            onClose()
-        }, 300)
+        // setTimeout(() => {
+        onClose()
+        // }, 300)
     }
 
     if (!isOpen) {
@@ -50,6 +50,7 @@ const Modal = ({ isOpen, onClose, title, body, loading }: ModalProps) => {
                 <div className="
        relative
         w-full
+        max-sm:h-full
        md:w-4/6
        lg:w-3/6
        xl:w-2/5
