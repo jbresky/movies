@@ -37,11 +37,11 @@ export default function Home() {
         submitSearch={submitSearch}
         getTopRanked={getTopRanked}
       >
-        <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('35')}>Comedy</h3>
-        <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('18')}>Drama</h3>
-        <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('28')}>Action</h3>
-        <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('53')}>Thriller</h3>
-        <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('27')}>Horror</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('35')}>Comedy</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('18')}>Drama</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('28')}>Action</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('53')}>Thriller</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('27')}>Horror</h3>
       </Search>
 
       <main className="w-full">

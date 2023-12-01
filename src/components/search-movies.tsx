@@ -105,7 +105,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
         </div>
         {!hidden && (
           <div className='justify-between gap-4 font-semibold overflow-x-auto flex whitespace-nowrap scroll-smooth'>
-            <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-200" onClick={getTopRanked}>Top ranked</h3>
+            <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={getTopRanked}>Top ranked</h3>
             {children ? children : ''}
           </div>
         )}
