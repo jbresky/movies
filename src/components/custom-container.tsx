@@ -28,7 +28,7 @@ const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRa
                     width={300}
                     height={375}
                     onLoad={(e: any) => e.target.classList.remove("opacity-0")}
-                    className="rounded-md opacity-0 transition-opacity duration-[2s]"
+                    className="rounded-md opacity-0 transition-opacity duration-2000"
                 />
                 {
                     isRank !== null && (

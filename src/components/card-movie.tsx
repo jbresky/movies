@@ -64,7 +64,7 @@ const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
                             width={300}
                             height={375}
                             onLoad={(e: any) => e.target.classList.remove("opacity-0")}
-                            className="rounded-md opacity-0 transition-opacity duration-[2s]"
+                            className="rounded-md opacity-0 transition-opacity duration-2000"
                             loading="lazy"
                         />
                         {
