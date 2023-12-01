@@ -38,6 +38,8 @@ const reducer = (state: State, action: Action): State => {
             return { ...state, rankingReady: action.payload }
         case 'ADD_TO_RANKING':
             return { ...state, selectedMovies: [...state.selectedMovies, action.payload] }
+        case 'REMOVE_FROM_RANKING':
+            return { ...state, selectedMovies: state.selectedMovies.filter(movie => movie.id !== action.payload) }
         case 'SET_LOAD':
             return { ...state, load: action.payload }
         default:
