@@ -6,6 +6,7 @@ import useSavedMovies from "@/hooks/use-saved-movies";
 import { UserAuth } from "@/context/auth-context";
 import { redirect } from "next/navigation";
 import Loader from "@/components/loader";
+import Link from "next/link";
 
 const Account = () => {
   const { user } = UserAuth()
@@ -18,6 +19,11 @@ const Account = () => {
 
   return (
     <>
+      <header className="sm:hidden mb-2">
+        <Link href='/' className='text-xl font-bold font-mono'>
+          M
+        </Link>
+      </header>
       <div className="sm:p-4 flex flex-col gap-10">
         {loading ? (
           <Loader />
