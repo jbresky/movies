@@ -10,6 +10,7 @@ import {
 import { UserAuth } from "@/context/auth-context";
 import useLoginModal from "@/hooks/use-login-modal";
 import useRegisterModal from "@/hooks/use-register-modal";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent } from 'react';
@@ -63,7 +64,17 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
           </form>
           <DropdownMenu>
             <DropdownMenuTrigger>
+              {user && user.photoURL ? (
+                <Image
+                  className='rounded-full sm:hidden'
+                  width={40}
+                  height={40}
+                  alt={user.email}
+                  src={user.photoURL}
+                />
+              ) : (
               <RxHamburgerMenu className='sm:hidden text-xl' />
+              )}
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-[#060d17] text-grayth w-[150px] mt-2 mr-2">
               {user && user.email ? (
@@ -93,8 +104,8 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
           </DropdownMenu>
         </div>
         {!hidden && (
-          <div className='justify-between gap-4 text-grayth text-[15px] font-semibold overflow-x-auto flex whitespace-nowrap scroll-smooth'>
-            <h3 className="hover:text-indigo-40 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 to-pink-900 brightness-200" onClick={getTopRanked}>Top ranked</h3>
+          <div className='justify-between gap-4 font-semibold overflow-x-auto flex whitespace-nowrap scroll-smooth'>
+            <h3 className="hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-200" onClick={getTopRanked}>Top ranked</h3>
             {children ? children : ''}
           </div>
         )}
