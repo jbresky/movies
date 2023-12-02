@@ -6,12 +6,12 @@ import useSavedMovies from "@/hooks/use-saved-movies";
 import { UserAuth } from "@/context/auth-context";
 import { redirect } from "next/navigation";
 import Loader from "@/components/loader";
-import Link from "next/link";
+import Search from "@/components/search-movies";
 
 const Account = () => {
   const { user } = UserAuth()
 
-  const { favorites, ranking, removeFromFavorites, removeRanking, loading } = useSavedMovies()
+  const { favorites, rankings, removeFromFavorites, removeRanking, loadingMovies } = useSavedMovies()
 
   if (!user) {
     redirect('/')
@@ -19,18 +19,14 @@ const Account = () => {
 
   return (
     <>
-      <header className="sm:hidden mb-2">
-        <Link href='/' className='text-xl font-bold font-mono'>
-          M
-        </Link>
-      </header>
+      <Search formHidden={true} hidden={true} />
       <div className="sm:p-4 flex flex-col gap-10">
-        {loading ? (
+        {loadingMovies ? (
           <Loader />
         ) : (
           <>
             <Rankings
-              ranking={ranking}
+              rankings={rankings}
               removeRanking={removeRanking}
             />
             <Favorites
