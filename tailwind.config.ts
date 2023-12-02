@@ -21,7 +21,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        'grayth': '#929aa5'
+        'grayth': '#929aa5',
+        'purple': '#655bf3'
       },
       gridTemplateColumns: {
         'sm': 'repeat(auto-fill, minmax(170px, 1fr))',
