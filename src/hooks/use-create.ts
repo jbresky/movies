@@ -49,7 +49,7 @@ const reducer = (state: State, action: Action): State => {
 
 const useCreate = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
-    
+
     const router = useRouter()
 
     const { user } = UserAuth()
@@ -75,11 +75,18 @@ const useCreate = () => {
     }
 
     const changeRankingName = (e: ChangeEvent<HTMLInputElement>) => {
+        if (state.nameOfRanking.length > 32) {
+            toast.message('Maximum character limit is 32 characters')
+        }
         dispatch({ type: 'SET_NAME', payload: e.target.value })
     }
 
+    const updateRankingName = () => {
+        dispatch({ type: 'SET_RANKING_READY', payload: false })
+    }
+
     const removeFromRanking = (movieId: string) => {
-       dispatch({ type: 'REMOVE_FROM_RANKING', payload: movieId })
+        dispatch({ type: 'REMOVE_FROM_RANKING', payload: movieId })
     }
 
     const userID = doc(db, 'users', `${user?.email}`)
@@ -108,6 +115,7 @@ const useCreate = () => {
         addToRanking,
         removeFromRanking,
         saveRanking,
+        updateRankingName,
     }
 }
 
