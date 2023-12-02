@@ -1,6 +1,5 @@
 'use client'
 
-// import Loader from '@/components/loader'
 import { Skeleton } from "@/components/ui/skeleton"
 import Search from "@/components/search-movies"
 import CardMovie from "@/components/card-movie"
@@ -37,18 +36,14 @@ export default function Home() {
         submitSearch={submitSearch}
         getTopRanked={getTopRanked}
       >
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('35')}>Comedy</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('18')}>Drama</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('28')}>Action</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('53')}>Thriller</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={() => getByGenre('27')}>Horror</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('35')}>Comedy</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('18')}>Drama</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('28')}>Action</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('53')}>Thriller</h3>
+        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('27')}>Horror</h3>
       </Search>
 
       <main className="w-full">
-        {/* {
-          loading ? (
-            <Loader />
-          ) : ( */}
         <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8 justify-items-center">
           {
             movies.map((item: Movie) => (
@@ -67,8 +62,6 @@ export default function Home() {
             ))
           }
         </div>
-        {/* )
-        } */}
       </main>
     </>
   )
