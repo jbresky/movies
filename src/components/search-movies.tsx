@@ -18,16 +18,18 @@ import { FaSearch } from 'react-icons/fa'
 import { RxHamburgerMenu } from "react-icons/rx";
 import LoginModal from "./modals/login-modal";
 import RegisterModal from "./modals/register-modal";
+
 interface SearchProps {
-  submitSearch: (e: FormEvent<HTMLFormElement>) => void,
-  title: string,
-  changeSearch: (e: ChangeEvent<HTMLInputElement>) => void,
+  submitSearch?: (e: FormEvent<HTMLFormElement>) => void,
+  title?: string,
+  changeSearch?: (e: ChangeEvent<HTMLInputElement>) => void,
   getTopRanked?: () => void,
   hidden?: boolean,
+  formHidden?: boolean,
   children?: React.ReactNode
 }
 
-const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, children }: SearchProps) => {
+const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, children, formHidden }: SearchProps) => {
 
   const { user, logOut } = UserAuth()
   const router = useRouter()
@@ -44,10 +46,10 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
     <>
       <LoginModal />
       <RegisterModal />
-      <div className='sm:flex gap-6 sm:px-4 py-4'>
+      <div className='flex max-sm:flex-col gap-2 sm:px-4 py-4'>
         <div className='flex items-center justify-between gap-4 mb-4'>
           <h1 className='sm:hidden font-bold font-mono text-2xl'>M</h1>
-          <form onSubmit={submitSearch} className="w-full sm:w-[300px]">
+          <form onSubmit={submitSearch} className={`w-full sm:w-[300px] ${formHidden ? 'hidden': 'block'}`}>
             <div
               className="flex items-center gap-3 text-sm text-grayth px-2 py-1 rounded-lg border-2 border-gray-600 hover:border-indigo-900 transition duration-200">
               <input
@@ -105,7 +107,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
         </div>
         {!hidden && (
           <div className='justify-between gap-4 font-semibold overflow-x-auto flex whitespace-nowrap scroll-smooth'>
-            <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-lg max-sm:bg-gradient-to-t from-indigo-900 via-indigo-400 to-gray-400 brightness-150" onClick={getTopRanked}>Top ranked</h3>
+            <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={getTopRanked}>Top ranked</h3>
             {children ? children : ''}
           </div>
         )}
