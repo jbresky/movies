@@ -8,15 +8,15 @@ import { toast } from "sonner";
 
 const useSavedMovies = () => {
     const [favorites, setFavorites] = useState([])
-    const [ranking, setRanking] = useState<any>([])
-    const [loading, setLoading] = useState(false)
+    const [rankings, setRanking] = useState<any>([])
+    const [loadingMovies, setLoadingMovies] = useState(false)
 
     const { user } = UserAuth()
 
     useEffect(() => {
         const fetchMovies = () => {
             try {
-                setLoading(true)
+                setLoadingMovies(true)
                 onSnapshot(doc(db, 'users', `${user?.email}`), doc => {
                     setFavorites(doc.data()?.savedMovies)
                     const rankings = doc.data()?.ranking || []
@@ -25,7 +25,7 @@ const useSavedMovies = () => {
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoading(false)
+                setLoadingMovies(false)
             }
         }
 
@@ -48,7 +48,7 @@ const useSavedMovies = () => {
     const removeRanking = async (index: number) => {
         try {
             await updateDoc(movieRef, {
-                ranking: arrayRemove(ranking[index])
+                ranking: arrayRemove(rankings[index])
             })
             toast.success('Ranking deleted')
         } catch (error) {
@@ -57,7 +57,7 @@ const useSavedMovies = () => {
     }
 
     return {
-        favorites, ranking, removeFromFavorites, removeRanking, loading
+        favorites, rankings, removeFromFavorites, removeRanking, loadingMovies
     }
 }
 
