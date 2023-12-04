@@ -19,7 +19,9 @@ const Account = () => {
 
   return (
     <>
-      <Search formHidden={true} hidden={true} />
+      <header className="sm:hidden">
+        <Search formHidden={true} hidden={true} />
+      </header>
       <div className="sm:p-4 flex flex-col gap-10">
         {loadingMovies ? (
           <Loader />
