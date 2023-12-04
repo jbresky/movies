@@ -1,7 +1,7 @@
 'use client'
 
 import AccountHeader from "./header";
-import CustomContainer from "../custom-container";
+import CustomContainer from "../containers/custom-container";
 import { Movie } from "@/interface/movie-interface";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
@@ -24,9 +24,9 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
             </div>
 
             {
-                rankings && rankings.map((rank: any, index: number) => (
+                rankings && rankings.map((rank: any) => (
                     <>
-                        <div className="flex justify-between items-center" key={index}>
+                        <div className="flex justify-between items-center">
                             <h2 className="text-indigo-400 text-lg sm:text-xl font-semibold">{rank.name}</h2>
                             <>                                <DropdownMenu>
                                     <DropdownMenuTrigger className="">
@@ -48,13 +48,14 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
                             </>
                         </div>
 
-                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mb-4">
-                            {rank.movies && rank.movies.map((item: any) => (
+                        <div className="flex whitespace-nowrap overflow-x-auto scroll-smooth md:grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mb-4">
+                            {rank.movies && rank.movies.map((item: any, index: number) => (
                                 <div key={item.id}>
                                         <CustomContainer
                                             item={item}
                                             isRank={true}
-                                            classname="text-grayth/60 text-2xl transition duration-200 cursor-pointer absolute top-3 right-3"
+                                            index={index + 1}
+                                            classname="text-grayth font-bold text-2xl xl:text-3xl transition duration-200 cursor-pointer absolute top-3 right-3"
                                         />
                                 </div>
                             ))}

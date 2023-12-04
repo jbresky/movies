@@ -1,7 +1,7 @@
 'use client'
 
 import { Movie } from "@/interface/movie-interface";
-import CustomContainer from "../custom-container";
+import CustomContainer from "../containers/custom-container";
 import AccountHeader from "./header";
 
 interface FavoritesProps {
@@ -17,7 +17,7 @@ const Favorites = ({ favorites, removeFromFavorites }: FavoritesProps) => {
                 title="Favorites"
                 paragraph="You don't have favorites yet"
             />
-            <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4">
+            <div className="flex whitespace-nowrap overflow-x-auto scroll-smooth md:grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4">
                 {
                     favorites?.map((item: any) => (
                         <div className="" key={item.id}>
