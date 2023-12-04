@@ -1,23 +1,14 @@
 'use client'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { UserAuth } from "@/context/auth-context";
+
+import Dropdown from "./dropdown";
+import LoginModal from "./modals/login-modal";
+import RegisterModal from "./modals/register-modal";
 import useLoginModal from "@/hooks/use-login-modal";
 import useRegisterModal from "@/hooks/use-register-modal";
-import Image from "next/image";
-import Link from "next/link";
+import { UserAuth } from "@/context/auth-context";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent } from 'react';
 import { FaSearch } from 'react-icons/fa'
-import { RxHamburgerMenu } from "react-icons/rx";
-import LoginModal from "./modals/login-modal";
-import RegisterModal from "./modals/register-modal";
 
 interface SearchProps {
   submitSearch?: (e: FormEvent<HTMLFormElement>) => void,
@@ -66,47 +57,15 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
               </button>
             </div>
           </form>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              {user && user.photoURL ? (
-                <Image
-                  className='rounded-full sm:hidden'
-                  width={40}
-                  height={40}
-                  alt={user.email}
-                  src={user.photoURL}
-                />
-              ) : (
-                <RxHamburgerMenu className='sm:hidden text-xl' />
-              )}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-[#060d17] text-grayth w-[150px] mt-2 mr-2">
-              {user && user.email ? (
-                <>
-                  <DropdownMenuLabel>
-                    <Link href='/account'>
-                      Profile
-                    </Link>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <Link href='/create-ranking'>
-                      Create ranking
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleLogout}>
-                    Logout
-                  </DropdownMenuItem>
-                </>
-              ) : (
-                <>
-                  <DropdownMenuItem onClick={loginModal.onOpen}>Log in</DropdownMenuItem>
-                  <DropdownMenuItem onClick={registerModal.onOpen}>Sign up</DropdownMenuItem>
-                </>
-              )}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Dropdown
+            user={user}
+            handleLogout={handleLogout}
+            loginModal={loginModal}
+            registerModal={registerModal}
+          />
         </div>
+        
+        {/* only available on home page */}
         {!hidden && (
           <div className='justify-between gap-4 font-semibold overflow-x-auto flex whitespace-nowrap scroll-smooth'>
             <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={getTopRanked}>Top ranked</h3>
