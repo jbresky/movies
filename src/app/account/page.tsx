@@ -22,7 +22,7 @@ const Account = () => {
       <header className="sm:hidden">
         <Search formHidden={true} hidden={true} />
       </header>
-      <div className="sm:p-4 flex flex-col gap-10">
+      <div className="sm:p-4 flex flex-col gap-6">
         {loadingMovies ? (
           <Loader />
         ) : (

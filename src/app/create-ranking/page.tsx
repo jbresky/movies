@@ -2,7 +2,7 @@
 
 import SelectedMovies from '@/components/create-ranking/selected-movies'
 import Search from "@/components/search-movies"
-import CustomContainer from '@/components/custom-container'
+import CustomContainer from '@/components/containers/custom-container'
 import Loader from '@/components/loader'
 import useMovies from '@/hooks/use-movies'
 import useCreate from '@/hooks/use-create'
@@ -52,11 +52,12 @@ const CreateRanking = () => {
 
             <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 my-8`}>
                 {
-                    selectedMovies.map((item: Movie) => (
+                    selectedMovies.map((item: Movie, index: number) => (
                             <CustomContainer
                                 key={item.id}
-                                classname='text-indigo-900 text-2xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3'
+                                classname='text-indigo-700 font-bold text-2xl xl:text-3xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3'
                                 item={item}
+                                index={index + 1}
                                 isRank={true}
                                 removeFromRanking={() => removeFromRanking(item.id)}
                             />
