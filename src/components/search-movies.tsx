@@ -35,8 +35,10 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
   const router = useRouter()
 
   const handleLogout = () => {
-    logOut()
     router.push('/')
+    setTimeout(async () => {
+      await logOut()
+    }, 300)
   }
 
   const loginModal = useLoginModal()
@@ -49,7 +51,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
       <div className='flex max-sm:flex-col gap-2 sm:px-4 py-4'>
         <div className='flex items-center justify-between gap-4 mb-4'>
           <h1 className='sm:hidden font-bold font-mono text-2xl'>M</h1>
-          <form onSubmit={submitSearch} className={`w-full sm:w-[300px] ${formHidden ? 'hidden': 'block'}`}>
+          <form onSubmit={submitSearch} className={`w-full sm:w-[300px] ${formHidden ? 'hidden' : 'block'}`}>
             <div
               className="flex items-center gap-3 text-sm text-grayth px-2 py-1 rounded-lg border-2 border-gray-600 hover:border-indigo-900 transition duration-200">
               <input
@@ -75,7 +77,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
                   src={user.photoURL}
                 />
               ) : (
-              <RxHamburgerMenu className='sm:hidden text-xl' />
+                <RxHamburgerMenu className='sm:hidden text-xl' />
               )}
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-[#060d17] text-grayth w-[150px] mt-2 mr-2">
