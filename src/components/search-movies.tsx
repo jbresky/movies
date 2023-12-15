@@ -39,8 +39,8 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
     <>
       <LoginModal />
       <RegisterModal />
-      <div className='flex max-sm:flex-col gap-2 sm:px-4 py-4'>
-        <div className='flex items-center justify-between gap-4 mb-4'>
+      <div className='flex max-sm:flex-col items-center gap-2 sm:px-4 py-4'>
+        <div className='flex items-center justify-between gap-4 max-sm:mb-4'>
           <h1 className='sm:hidden font-bold font-mono text-2xl'>M</h1>
           <form onSubmit={submitSearch} className={`w-full sm:w-[300px] ${formHidden ? 'hidden' : 'block'}`}>
             <div
@@ -68,7 +68,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
         {/* only available on home page */}
         {!hidden && (
           <div className='justify-between gap-4 font-semibold overflow-x-auto flex whitespace-nowrap scroll-smooth'>
-            <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={getTopRanked}>Top ranked</h3>
+            <h3 className="sm:hover:text-indigo-400 text-grayth transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-2 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={getTopRanked}>Top ranked</h3>
             {children ? children : ''}
           </div>
         )}

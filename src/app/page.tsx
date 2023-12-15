@@ -36,11 +36,11 @@ export default function Home() {
         submitSearch={submitSearch}
         getTopRanked={getTopRanked}
       >
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('35')}>Comedy</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('18')}>Drama</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('28')}>Action</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('53')}>Thriller</h3>
-        <h3 className="sm:hover:text-indigo-400 transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('27')}>Horror</h3>
+        <h3 className="sm:hover:text-indigo-400 sm:text-grayth transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('35')}>Comedy</h3>
+        <h3 className="sm:hover:text-indigo-400 sm:text-grayth transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('18')}>Drama</h3>
+        <h3 className="sm:hover:text-indigo-400 sm:text-grayth transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('28')}>Action</h3>
+        <h3 className="sm:hover:text-indigo-400 sm:text-grayth transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('53')}>Thriller</h3>
+        <h3 className="sm:hover:text-indigo-400 sm:text-grayth transition duration-200 cursor-pointer text-sm max-sm:text-black max-sm:py-1 px-3 rounded-full max-sm:bg-gradient-to-t from-slate-400 to-white" onClick={() => getByGenre('27')}>Horror</h3>
       </Search>
 
       <main className="w-full">
