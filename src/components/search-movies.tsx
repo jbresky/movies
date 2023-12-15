@@ -39,7 +39,7 @@ const Search = ({ submitSearch, title, changeSearch, getTopRanked, hidden, child
     <>
       <LoginModal />
       <RegisterModal />
-      <div className='flex max-sm:flex-col items-center gap-2 sm:px-4 py-4'>
+      <div className='flex max-sm:flex-col sm:items-center gap-2 sm:px-4 py-4'>
         <div className='flex items-center justify-between gap-4 max-sm:mb-4'>
           <h1 className='sm:hidden font-bold font-mono text-2xl'>M</h1>
           <form onSubmit={submitSearch} className={`w-full sm:w-[300px] ${formHidden ? 'hidden' : 'block'}`}>
