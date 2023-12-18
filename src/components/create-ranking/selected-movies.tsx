@@ -1,6 +1,5 @@
 'use client'
 
-import { Movie } from "@/interface/movie-interface";
 import { ChangeEvent, FormEvent } from "react";
 import { BeatLoader } from "react-spinners";
 import {

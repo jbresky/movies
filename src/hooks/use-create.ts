@@ -2,7 +2,6 @@
 
 import { UserAuth } from "@/context/auth-context"
 import { db } from "@/firebase"
-import { Movie } from "@/interface/movie-interface"
 import { arrayUnion, doc, updateDoc } from "firebase/firestore"
 import { useRouter } from "next/navigation"
 import { ChangeEvent, FormEvent, useReducer } from "react"

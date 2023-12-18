@@ -8,7 +8,6 @@ import useMovies from '@/hooks/use-movies'
 import useCreate from '@/hooks/use-create'
 import useSearch from '@/hooks/use-search'
 import { UserAuth } from '@/context/auth-context'
-import { Movie } from "@/interface/movie-interface"
 import { redirect } from 'next/navigation'
 import { Toaster } from 'sonner'
 import { ChangeEvent, FormEvent } from 'react'

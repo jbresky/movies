@@ -4,7 +4,6 @@ import { UserAuth } from "@/context/auth-context";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "@/firebase";
 import Image from "next/image";
-import { Movie } from "@/interface/movie-interface";
 import useLoginModal from "@/hooks/use-login-modal";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { toast } from 'sonner'

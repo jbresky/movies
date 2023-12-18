@@ -7,7 +7,6 @@ import useMovies from '@/hooks/use-movies'
 import useFavorites from '@/hooks/use-saved-movies'
 import { ChangeEvent, FormEvent } from 'react'
 import { Toaster } from 'sonner'
-import type { Movie } from "@/interface/movie-interface"
 import CardMovie from "@/components/containers/card-movie"
 
 export default function Home() {

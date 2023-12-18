@@ -1,6 +1,5 @@
 'use client'
 
-import { Movie } from "@/interface/movie-interface";
 import CustomContainer from "../containers/custom-container";
 import AccountHeader from "./header";
 

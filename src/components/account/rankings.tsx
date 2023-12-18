@@ -2,7 +2,6 @@
 
 import AccountHeader from "./header";
 import CustomContainer from "../containers/custom-container";
-import { Movie } from "@/interface/movie-interface";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 

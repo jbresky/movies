@@ -1,6 +1,5 @@
 'use client'
 
-import { Movie } from "@/interface/movie-interface";
 import Image from "next/image";
 import { FaHeart } from "react-icons/fa";
 

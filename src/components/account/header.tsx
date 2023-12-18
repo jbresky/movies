@@ -1,5 +1,3 @@
-import { Movie } from "@/interface/movie-interface";
-
 interface HeaderProps {
  data: Movie[],
  title: string,
