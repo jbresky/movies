@@ -34,8 +34,8 @@ const SelectedMovies = ({
         <div className="flex flex-col sm:px-5">
             <div className="flex max-sm:flex-col justify-between sm:items-center font-semibold mb-4">
                 <div className='flex max-sm:flex-col sm:items-center sm:gap-3'>
-                    {selectedMovies.length > 0 &&
-                        <h1 className='text-xl sm:text-2xl'>Ranking:</h1>
+                    {selectedMovies.length > 0
+                        && <h1 className='text-xl sm:text-2xl'>Ranking:</h1>
                     }
 
                     {rankingReady &&
@@ -52,17 +52,18 @@ const SelectedMovies = ({
                     }
                 </div>
 
-                {selectedMovies.length > 0 && selectedMovies.length < 3 && (
-                    <p className="text-grayth">A ranking must contain at least 3 movies</p>
-                )}
+                { selectedMovies.length > 0 && selectedMovies.length < 3
+                    && <p className="text-grayth">A ranking must contain at least 3 movies</p>
+                }
 
                 {selectedMovies.length >= 3 && rankingReady && (
                     <button
                         onClick={saveRanking}
                         className='w-[200px] max-sm:w-full text-md sm:text-xl mt-2 border-indigo-900 border-2 rounded-lg px-5 py-2 hover:brightness-150 transition duration-500'>
-                        {load ? (
-                            <BeatLoader color='white' />
-                        ) : 'Create ranking'}
+                        { load
+                            ? <BeatLoader color='white' />
+                            : 'Create ranking'
+                        }
                     </button>
                 )}
 
