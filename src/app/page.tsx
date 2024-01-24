@@ -35,7 +35,7 @@ export default async function Home({ searchParams }: { searchParams: { title: st
               <div className='grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8 justify-items-center'>
                 {movies.map((item: Movie) => (
                   !movies ? (
-                    <MovieSkeleton item={item} />
+                    <MovieSkeleton key={item.id} item={item} />
                   ) : (
                     <CardMovie
                       key={item.id}
