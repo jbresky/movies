@@ -7,6 +7,7 @@ import Image from "next/image";
 import useLoginModal from "@/hooks/use-login-modal";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { toast } from 'sonner'
+import useSavedMovies from "@/hooks/use-saved-movies";
 
 interface CardMovieProps {
     item: Movie,
@@ -16,6 +17,8 @@ interface CardMovieProps {
 const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
 
     const { user } = UserAuth()
+
+    const { favorites } = useSavedMovies()
 
     const loginModal = useLoginModal()
 
@@ -66,8 +69,9 @@ const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
                             className="rounded-md opacity-0 transition-opacity duration-2000"
                             loading="lazy"
                         />
+
                         {
-                            userFavorites && userFavorites.some((movie: any) => movie.id == item.id) ? (
+                            favorites && favorites.some((movie: any) => movie.id == item.id) ? (
                                 <FaHeart
                                     onClick={() => removeFromFavorites(item.id)}
                                     className="text-red-800 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3" />

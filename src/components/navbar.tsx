@@ -2,8 +2,6 @@
 
 import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
-import RegisterModal from './modals/register-modal';
-import LoginModal from './modals/login-modal';
 import Image from 'next/image';
 import { UserAuth } from '@/context/auth-context';
 import { usePathname, useRouter } from 'next/navigation';
@@ -28,8 +26,6 @@ const Navbar = () => {
 
   return (
     <>
-      <LoginModal />
-      <RegisterModal />
       <header className="sm:flex items-center justify-between gap-2 hidden sm:p-4">
         <Link href='/' className='text-2xl font-bold font-mono py-2'>
             Movieees

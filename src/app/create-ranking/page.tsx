@@ -1,7 +1,6 @@
 'use client'
 
 import SelectedMovies from '@/components/create-ranking/selected-movies'
-import Search from "@/components/search-movies"
 import CustomContainer from '@/components/containers/custom-container'
 import Loader from '@/components/loader'
 import useMovies from '@/hooks/use-movies'
@@ -11,11 +10,12 @@ import { UserAuth } from '@/context/auth-context'
 import { redirect } from 'next/navigation'
 import { Toaster } from 'sonner'
 import { ChangeEvent, FormEvent } from 'react'
+import SearchM from '@/components/search-movies'
 
 const CreateRanking = () => {
 
     const { title, setTitle } = useSearch()
-    
+
     const { movies, getOneMovie, loading } = useMovies()
 
     const { user } = UserAuth()
@@ -23,7 +23,7 @@ const CreateRanking = () => {
     if (!user) {
         redirect('/')
     }
-    
+
     const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
     }
@@ -40,26 +40,27 @@ const CreateRanking = () => {
     return (
         <>
             <Toaster />
-            <Search
+            <SearchM
                 title={title}
                 changeSearch={changeSearch}
                 submitSearch={submitSearch}
-                hidden={true}
+                showBox={true}
+                isClient={true}
             />
 
-            <SelectedMovies {...createRankingProps}/>
+            <SelectedMovies {...createRankingProps} />
 
             <div className={`${selectedMovies.length == 0 && 'hidden'} grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 my-8`}>
                 {
                     selectedMovies.map((item: Movie, index: number) => (
-                            <CustomContainer
-                                key={item.id}
-                                classname='text-indigo-700 font-bold text-2xl xl:text-3xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3'
-                                item={item}
-                                index={index + 1}
-                                isRank={true}
-                                removeFromRanking={() => removeFromRanking(item.id)}
-                            />
+                        <CustomContainer
+                            key={item.id}
+                            classname='text-indigo-700 font-bold text-2xl xl:text-3xl hover:text-gray-400 transition duration-200 cursor-pointer absolute top-3 right-3'
+                            item={item}
+                            index={index + 1}
+                            isRank={true}
+                            removeFromRanking={() => removeFromRanking(item.id)}
+                        />
                     ))
                 }
             </div>
@@ -69,9 +70,9 @@ const CreateRanking = () => {
                     loading ? (
                         <Loader />
                     ) : (
-                        <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8">
-                            {
-                                movies.map((item: Movie) => (
+                        movies.length > 1 ? (
+                            <div className="grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4">
+                                {movies.map((item: Movie) => (
                                     <div key={item.id}>
                                         {item.img && (
                                             <CustomContainer
@@ -82,11 +83,13 @@ const CreateRanking = () => {
                                         )
                                         }
                                     </div>
-                                ))
-                            }
-                        </div>
-                    )
-                }
+                                ))}
+                            </div>
+
+                        ) : (
+                            <p className='px-4 text-neutral-300'>Search a movie you like!</p>
+                        )
+                    )}
             </main>
         </>
     );

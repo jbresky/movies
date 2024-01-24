@@ -10,7 +10,7 @@ export default function useMovies() {
     const getOneMovie = useCallback(async ({ title }: any) => {
         try {
             setLoading(true)
-            const newMovies = await getTitle({ title })
+            const newMovies = await getTitle(title)
             setMovies(newMovies)
         } catch (error) {
             console.log(error);

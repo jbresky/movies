@@ -16,7 +16,7 @@ export async function getTopMovies() {
     }
 }
 
-export async function getTitle({ title }: { title: string }) {
+export async function getTitle(title: string) {
     try {
         const res = await fetch(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=${title}&include_adult=false&language=en-US&page=1`)
         const movie = await res.json()
