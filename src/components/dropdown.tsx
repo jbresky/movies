@@ -1,26 +1,37 @@
+'use client'
+
 import Image from "next/image";
-import { RxHamburgerMenu } from "react-icons/rx";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { SlArrowRight } from "react-icons/sl";
+
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+    Drawer,
+    DrawerContent,
+    DrawerTrigger,
+} from "@/components/ui/drawer"
 
-interface DropdownProps {
-    user: any,
-    handleLogout: () => void,
-    loginModal: any,
-    registerModal: any
-}
+import { UserAuth } from "@/context/auth-context";
+import useLoginModal from "@/hooks/use-login-modal";
+import useRegisterModal from "@/hooks/use-register-modal";
 
-const Dropdown = ({ user, handleLogout, loginModal, registerModal }: DropdownProps) => {
+const Dropdown = () => {
+    const { user, logOut } = UserAuth()
+    const router = useRouter()
+
+    const handleLogout = () => {
+        router.push('/')
+        setTimeout(async () => {
+            await logOut()
+        }, 300)
+    }
+
+    const loginModal = useLoginModal()
+    const registerModal = useRegisterModal()
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger>
+        <Drawer>
+            <DrawerTrigger>
                 {user && user.photoURL ? (
                     <Image
                         className='rounded-full sm:hidden'
@@ -32,34 +43,54 @@ const Dropdown = ({ user, handleLogout, loginModal, registerModal }: DropdownPro
                 ) : (
                     <RxHamburgerMenu className='sm:hidden text-xl' />
                 )}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-[#060d17] text-grayth w-[150px] mt-2 mr-2">
+            </DrawerTrigger>
+            <DrawerContent className="bg-[#0e0e0e] p-4 flex flex-col border-none text-sm gap-4">
                 {user && user.email ? (
                     <>
-                        <DropdownMenuLabel>
-                            <Link href='/account'>
+                        <Link href='/account' className="flex items-center gap-2 justify-between text-neutral-400">
+                            <span>
                                 Profile
-                            </Link>
-                        </DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <Link href='/create-ranking'>
+                            </span>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </Link>
+                        <Link href='/create-ranking' className="flex items-center justify-between gap-2 text-neutral-400">
+                            <span>
                                 Create ranking
-                            </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={handleLogout}>
-                            Logout
-                        </DropdownMenuItem>
+                            </span>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </Link>
+                        <button className="flex items-center gap-2 justify-between text-[#d5322d]" onClick={handleLogout}>
+                            <span>
+                                Log out
+                            </span>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </button>
                     </>
                 ) : (
                     <>
-                        <DropdownMenuItem onClick={loginModal.onOpen}>Log in</DropdownMenuItem>
-                        <DropdownMenuItem onClick={registerModal.onOpen}>Sign up</DropdownMenuItem>
+                        <div className="flex items-center justify-between gap-2 text-neutral-400">
+                            <button onClick={loginModal.onOpen}>Log in</button>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </div>
+                        <div className="flex items-center justify-between gap-2 text-neutral-400">
+                            <button onClick={registerModal.onOpen}>Sign up</button>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </div>
                     </>
                 )}
-            </DropdownMenuContent>
-        </DropdownMenu>
-     );
+            </DrawerContent>
+        </Drawer>
+    );
 }
 
 export default Dropdown;
