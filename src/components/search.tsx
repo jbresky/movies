@@ -19,7 +19,7 @@ const Search = () => {
     return ( 
         <form onSubmit={onSubmit} className='w-full sm:w-[300px]'>
         <div
-          className="flex items-center gap-3 text-sm text-grayth px-2 py-1 rounded-lg border-2 border-gray-600 hover:border-indigo-900 transition duration-200">
+          className="flex items-center gap-3 text-sm text-grayth py-2 px-3 rounded-full border-2 border-gray-600 hover:border-indigo-900 transition duration-200">
           <input
             defaultValue={searchParams.get("title") || ""}
             name='query'
