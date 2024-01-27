@@ -1,4 +1,3 @@
-
 import { Toaster } from 'sonner'
 import CardMovie from "@/components/containers/card-movie"
 import MovieSkeleton from "@/components/containers/movie-skeleton"
@@ -23,25 +22,29 @@ export default async function Home({ searchParams }: { searchParams: { title: st
   return (
     <>
       <Toaster />
-      <SearchM showBox={true} />
 
       <main className="w-full min-h-screen">
 
-        {!searchParams.title ? <h1 className="sm:px-4 text-xl text-grayth">Top movies</h1> : null}
+        <div className='flex justify-between flex-col xl:px-10 py-2'>
+          <SearchM showBox={true} />
+          {!searchParams.title ? <h1 className="text-xl font-medium text-grayth">Top movies</h1> : null}
+        </div>
 
         {
           movies.length > 0
             ? (
-              <div className='grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 mt-8 justify-items-center'>
+              <div className='grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 py-4 justify-items-center'>
                 {movies.map((item: Movie) => (
-                  !movies ? (
-                    <MovieSkeleton key={item.id} item={item} />
-                  ) : (
-                    <CardMovie
-                      key={item.id}
-                      item={item}
-                    />
-                  )
+                  !movies
+                    ? (
+                      <MovieSkeleton key={item.id} item={item} />
+                    )
+                    : (
+                      <CardMovie
+                        key={item.id}
+                        item={item}
+                      />
+                    )
                 ))}
               </div>
             ) : (

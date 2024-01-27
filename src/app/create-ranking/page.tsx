@@ -87,7 +87,7 @@ const CreateRanking = () => {
                             </div>
 
                         ) : (
-                            <p className='px-4 text-neutral-300'>Search a movie you like!</p>
+                            <p className='px-2 text-neutral-300 text-sm'>Start creating a ranking by searching a movie</p>
                         )
                     )}
             </main>
