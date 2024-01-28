@@ -81,7 +81,7 @@ const Modal = ({ isOpen, onClose, title, body, loading }: ModalProps) => {
                         flex 
                         flex-col 
                         w-full 
-                        bg-[#060d17]
+                        bg-deep-blue
                         outline-none 
                         focus:outline-none
                         py-4
