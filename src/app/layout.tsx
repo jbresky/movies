@@ -24,7 +24,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <LoginModal />
           <RegisterModal />
-          <div className="flex flex-col max-w-[1700px] py-2 px-4 lg:px-10 min-h-screen">
+          <div className="flex flex-col max-w-[1700px] py-2 px-6 sm:px-10 min-h-screen m-auto">
             <Navbar />
             {children}
           </div>
