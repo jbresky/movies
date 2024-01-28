@@ -4,7 +4,7 @@ import useLoginModal from '@/hooks/use-login-modal';
 import useRegisterModal from '@/hooks/use-register-modal';
 import { UserAuth } from '@/context/auth-context';
 import Link from 'next/link';
-import Dropdown from './dropdown';
+import Dropdown from './nav-dropdown';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
@@ -24,8 +24,8 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="sm:flex items-center justify-between gap-2 hidden sm:p-4">
-        <Link href='/' className='text-2xl font-bold font-mono py-2'>
+      <header className="sm:flex items-center justify-between gap-2 hidden sm:py-4">
+        <Link href='/' className='text-2xl font-bold font-mono py-2 text-indigo-300'>
           Movieees
         </Link>
 
