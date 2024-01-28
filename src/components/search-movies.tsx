@@ -19,7 +19,7 @@ const SearchM = ({ showBox, isClient, submitSearch, title, changeSearch }: ISear
   return (
     <>
       <div className='flex max-sm:flex-col sm:items-center gap-2 py-4'>
-        <div className='flex items-center justify-between gap-4 max-sm:mb-4'>
+        <div className='flex items-center justify-between gap-4'>
 
           {/* Mobile */}
           <Link href='/' className='sm:hidden font-bold font-mono text-2xl'>M</Link>
@@ -27,7 +27,7 @@ const SearchM = ({ showBox, isClient, submitSearch, title, changeSearch }: ISear
           {showBox ?
             (
               isClient
-                // as the path /create-ranking is fill with interaction and states, it is a client component and cannot use searchParams 
+                // as the /create-ranking page requires user interaction, it's a client component and relies on the current status
                 ?
                 (
                   <form onSubmit={submitSearch} className={`w-full sm:w-[300px]`} >
