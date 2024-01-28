@@ -1,7 +1,8 @@
 'use client'
 
-import Rankings from "@/components/account/rankings";
+import Rankings from "@/components/rankings";
 import Loader from "@/components/loader";
+import SearchNav from "@/components/search-movies";
 import { UserAuth } from "@/context/auth-context";
 import useSavedMovies from "@/hooks/use-saved-movies";
 import { redirect } from "next/navigation";
@@ -14,17 +15,22 @@ const RankingsPage = () => {
   if (!user) {
     redirect('/')
   }
-  
+
   return (
-    <div className="sm:p-4 flex flex-col">
-      { loadingMovies
-        ? <Loader />
-        : <Rankings
-          rankings={rankings}
-          removeRanking={removeRanking}
-        />
-      }
-    </div>
+    <>
+      <header className="sm:hidden">
+        <SearchNav />
+      </header>
+      <div className="flex flex-col mt-2">
+        {loadingMovies
+          ? <Loader />
+          : <Rankings
+            rankings={rankings}
+            removeRanking={removeRanking}
+          />
+        }
+      </div>
+    </>
   )
 }
 
