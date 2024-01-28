@@ -25,15 +25,15 @@ export default async function Home({ searchParams }: { searchParams: { title: st
 
       <main className="w-full min-h-screen">
 
-        <div className='flex justify-between flex-col xl:px-10 py-2'>
+        <div className='flex justify-between flex-col py-2'>
           <SearchM showBox={true} />
-          {!searchParams.title ? <h1 className="text-xl font-medium text-grayth">Top movies</h1> : null}
+          {!searchParams.title ? <h1 className="text-xl font-medium font-sans">Top movies</h1> : null}
         </div>
 
         {
           movies.length > 0
             ? (
-              <div className='grid grid-cols-sm md:grid-cols-md lg:grid-cols-lg xl:grid-cols-xl gap-4 py-4 justify-items-center'>
+              <div className='max-2xsm:flex flex-col items-center justify-center grid grid-cols-2 s:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 py-4 justify-items-center'>
                 {movies.map((item: Movie) => (
                   !movies
                     ? (
