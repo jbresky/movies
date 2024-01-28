@@ -11,10 +11,9 @@ import useSavedMovies from "@/hooks/use-saved-movies";
 
 interface CardMovieProps {
     item: Movie,
-    userFavorites?: Movie[] | undefined
 }
 
-const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
+const CardMovie = ({ item }: CardMovieProps) => {
 
     const { user } = UserAuth()
 
@@ -22,13 +21,13 @@ const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
 
     const loginModal = useLoginModal()
 
-    const movieID = doc(db, 'users', `${user?.email}`)
+    const movieRef = doc(db, 'users', `${user?.email}`)
 
     const saveMovie = async () => {
         if (!user?.email) {
             loginModal.onOpen()
         } else {
-            await updateDoc(movieID, {
+            await updateDoc(movieRef, {
                 savedMovies: arrayUnion({
                     id: item.id,
                     title: item.title,
@@ -40,22 +39,20 @@ const CardMovie = ({ item, userFavorites }: CardMovieProps) => {
         }
     }
 
-    const movieRef = doc(db, 'users', `${user?.email}`)
-
     const removeFromFavorites = async (movieId: string | number) => {
         try {
-            const result = userFavorites?.filter((item: any) => item.id !== movieId)
+            const result = favorites?.filter((item: any) => item.id !== movieId)
             await updateDoc(movieRef, {
                 savedMovies: result
             })
-            toast.message(`Removed from your favorites: ${item.title}`)
+            toast.message('Removed from your favorites')
         } catch (error) {
             console.log(error)
         }
     }
 
     return (
-        <div className="w-[170px] md:w-[200px] lg:w-[250px] xl:w-[300px] flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap">
+        <div className="w-[80%] 2xsm:w-full flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap">
             {item.img !== null && (
                 <>
                     <div
