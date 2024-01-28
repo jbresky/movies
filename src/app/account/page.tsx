@@ -3,7 +3,7 @@
 import useSavedMovies from "@/hooks/use-saved-movies";
 import { UserAuth } from "@/context/auth-context";
 import { redirect } from "next/navigation";
-import Search from "@/components/search-movies";
+import SearchNav from "@/components/search-movies";
 import Greeting from "./components/greeting";
 import Dashboard from "./components/dashboard";
 import Loader from "@/components/loader";
@@ -20,14 +20,14 @@ const Account = () => {
   return (
     <>
       <header className="sm:hidden">
-        <Search />
+        <SearchNav />
       </header>
 
-      <div className="sm:p-4 flex flex-col">
+      <div className="flex flex-col">
         <Greeting user={user} />
         {loadingMovies
-          ? <Dashboard rankings={rankings} favorites={favorites} />
-          : <Loader />
+          ? <Loader /> 
+          : <Dashboard rankings={rankings} favorites={favorites} />
         }
       </div>
     </>
