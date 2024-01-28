@@ -63,6 +63,30 @@ const MobileDrawer = () => {
                                 <SlArrowRight />
                             </span>
                         </Link>
+                        <Link href='/favorites' className="flex items-center justify-between gap-2 text-neutral-400">
+                            <span>
+                                Favorites
+                            </span>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </Link>
+                        <Link href='/rankings' className="flex items-center justify-between gap-2 text-neutral-400">
+                            <span>
+                                Rankings
+                            </span>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </Link>
+                        <Link href='/collections' className="flex items-center justify-between gap-2 text-neutral-400">
+                            <span>
+                                Collections
+                            </span>
+                            <span className="text-[11px]">
+                                <SlArrowRight />
+                            </span>
+                        </Link>
                         <button className="flex items-center gap-2 justify-between text-[#d5322d]" onClick={handleLogout}>
                             <span>
                                 Log out
