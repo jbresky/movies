@@ -12,8 +12,7 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        'xsm': '480px',
-        'sm': '640px',
+        'sm': '645px',
         'md': '768px',
         'lg': '1024px',
         'xl': '1300px'
@@ -22,13 +21,14 @@ module.exports = {
     extend: {
       colors: {
         'grayth': '#929aa5',
-        'purple': '#655bf3'
+        'purple': '#655bf3',
+        'deep-blue': '#060d17'
       },
-      gridTemplateColumns: {
-        'sm': 'repeat(auto-fill, minmax(170px, 1fr))',
-        'md': 'repeat(auto-fill, minmax(200px, 1fr))',
-        'lg': 'repeat(auto-fill, minmax(250px, 1fr))',
-        'xl': 'repeat(auto-fill, minmax(300px, 1fr))'
+      screens: {
+        '2xsm': '377px',
+        's': '568px',
+        'xsm': '480px',
+        '2xl': '1480px'
       },
       keyframes: {
         "accordion-down": {

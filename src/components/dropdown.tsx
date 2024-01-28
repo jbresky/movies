@@ -33,9 +33,11 @@ const Dropdown = ({ user, handleLogout }: IDropdown) => {
                         />
                     )}
                     {!user.photoURL && (
-                        <FaCircleUser
-                            className='rounded-full sm:hidden text-2xl bg-indigo-900'
-                        />
+                        <div className="w-[30px] h-[30px] flex items-center justify-center font-semibold rounded-full bg-slate-200 text-black">
+                            <p>{user.email?.[0].toUpperCase()}</p>
+                            <p>{user.email?.[1].toUpperCase()}</p>
+                        </div>
+                     
                     )}
                 </div>
             </DropdownMenuTrigger>
