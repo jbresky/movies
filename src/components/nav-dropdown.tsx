@@ -16,7 +16,7 @@ interface IDropdown {
     handleLogout: () => void
 }
 
-const Dropdown = ({ user, handleLogout }: IDropdown) => {
+const NavDropdown = ({ user, handleLogout }: IDropdown) => {
 
     return (
         <DropdownMenu>
@@ -41,7 +41,7 @@ const Dropdown = ({ user, handleLogout }: IDropdown) => {
                     )}
                 </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="absolute left-[-10rem] w-[200px]">
 
                 <Link href='/account'>
                     <DropdownMenuLabel>
@@ -80,4 +80,4 @@ const Dropdown = ({ user, handleLogout }: IDropdown) => {
     );
 }
 
-export default Dropdown;
+export default NavDropdown;
