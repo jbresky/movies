@@ -26,11 +26,11 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
                 rankings && rankings.map((rank: any) => (
                     <>
                         <div className="flex justify-between items-center">
-                            <h2 className="font-sans font-medium">{rank.name.toUpperCase()}</h2>
+                            <h2 className="font-sans font-medium text-indigo-300">{rank.name.toUpperCase()}</h2>
                             <>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger>
-                                        <TiArrowSortedDown className="text-2xl" />
+                                        <TiArrowSortedDown className="text-2xl text-indigo-300" />
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="absolute right-[-10px]">
                                         <DropdownMenuItem>
