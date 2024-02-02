@@ -1,7 +1,5 @@
 'use client'
 
-import SelectedMovies from '@/app/create-ranking/components/selected-movies'
-import CustomContainer from '@/components/containers/custom-container'
 import Loader from '@/components/loader'
 import useMovies from '@/hooks/use-movies'
 import useCreate from '@/hooks/use-create'
@@ -11,14 +9,16 @@ import { redirect } from 'next/navigation'
 import { Toaster } from 'sonner'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import SearchM from '@/components/search-movies'
+import Selected from './components/selected'
+import CustomContainer from '@/components/containers/custom-container'
 
 const CreateRanking = () => {
     const [movieSearched, setMovieSearched] = useState('')
-    
+
     const { title, setTitle } = useSearch()
 
     const { movies, getOneMovie, loading } = useMovies()
-    
+
     const { user } = UserAuth()
 
     if (!user) {
@@ -50,26 +50,12 @@ const CreateRanking = () => {
                 isClient={true}
             />
 
-            {movies.length < 1 && selectedMovies.length < 1 && !movieSearched && <p className='px-2 text-sm tracking-wide mt-4'>Put those movies into a ranking❗</p>}
-
-            {selectedMovies.length > 1 && <SelectedMovies {...createRankingProps} />}
-
-            {selectedMovies.length >= 1 && (
-                <div className='flex flex-col items-center 2xsm:grid grid-cols-2 s:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 my-4'>
-                    {
-                        selectedMovies.map((item: Movie, index: number) => (
-                            <CustomContainer
-                                key={item.id}
-                                classname='text-indigo-700 font-bold text-2xl xl:text-3xl p-4 border-[1px] flex items-center rounded-full w-[50px] h-[50px] justify-center bg-indigo-400/30 border-transparent hover:opacity-60 transition duration-200 cursor-pointer absolute top-3 right-3'
-                                item={item}
-                                index={index + 1}
-                                isRank={true}
-                                removeFromRanking={() => removeFromRanking(item.id)}
-                            />
-                        ))
-                    }
-                </div>
-            )}
+            <Selected
+                movies={movies}
+                removeFromRanking={removeFromRanking}
+                selectedMovies={selectedMovies}
+                createRankingProps={createRankingProps}
+                movieSearched={movieSearched} />
 
             <main className='py-2'>
                 {
