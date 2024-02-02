@@ -26,13 +26,13 @@ const Favorites = ({ favorites, removeFromFavorites }: FavoritesProps) => {
                                 animate={{ opacity: 1 }}
                                 initial={{ opacity: 0 }}
                                 exit={{ opacity: 0 }}
-                                key={item.id}
                             >
                                 <div>
                                     <CustomContainer
                                         classname='text-red-700 text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3'
                                         removeFromFavorites={() => removeFromFavorites(item.id)}
                                         item={item}
+                                        key={item.id}
                                         isScrollable={true}
                                         isRank={false}
                                     />

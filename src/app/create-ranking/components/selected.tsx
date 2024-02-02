@@ -2,7 +2,6 @@
 
 import CustomContainer from '@/components/containers/custom-container';
 import { AnimatePresence, motion } from 'framer-motion'
-import SelectedMovies from '@/app/create-ranking/components/ranking-entered-data'
 import RankingEnteredData from '@/app/create-ranking/components/ranking-entered-data';
 
 interface ISelected {
@@ -31,11 +30,11 @@ const Selected = ({ movies, movieSearched, selectedMovies, createRankingProps, r
                                     initial={{ x: 300, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     exit={{ x: -300, opacity: 0 }}
-                                    key={item.id}
                                 >
                                     <CustomContainer
                                         classname='text-indigo-700 font-bold text-2xl xl:text-3xl p-4 border-[1px] flex items-center rounded-full w-[50px] h-[50px] justify-center bg-indigo-400/30 border-transparent hover:opacity-60 transition duration-200 cursor-pointer absolute top-3 right-3'
                                         item={item}
+                                        key={item.id}
                                         index={index + 1}
                                         isRank={true}
                                         removeFromRanking={() => removeFromRanking(item.id)}
