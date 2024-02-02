@@ -53,15 +53,15 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
 
                         <div className="flex whitespace-nowrap overflow-x-auto scroll-smooth sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-4 max-md:border-2 max-md:p-2 border-grayth rounded-lg border-dotted">
                             {rank.movies && rank.movies.map((item: any, index: number) => (
-                                <div key={item.id}>
-                                    <CustomContainer
-                                        item={item}
-                                        isRank={true}
-                                        index={index + 1}
-                                        isScrollable={true}
-                                        classname="text-indigo-600/90 font-bold text-2xl xl:text-3xl p-4 border-[1px] flex items-center rounded-full w-[50px] h-[50px] justify-center bg-indigo-400/30 border-transparent hover:opacity-60 transition duration-200 cursor-pointer absolute top-3 right-3"
-                                    />
-                                </div>
+                                        <div key={item.id}>
+                                            <CustomContainer
+                                                item={item}
+                                                isRank={true}
+                                                index={index + 1}
+                                                isScrollable={true}
+                                                classname="text-indigo-600/90 font-bold text-2xl xl:text-3xl p-4 border-[1px] flex items-center rounded-full w-[50px] h-[50px] justify-center bg-indigo-400/30 border-transparent hover:opacity-60 transition duration-200 cursor-pointer absolute top-3 right-3"
+                                            />
+                                        </div>
                             ))}
                         </div>
                     </>
