@@ -40,6 +40,7 @@ const useSavedMovies = () => {
             await updateDoc(movieRef, {
                 savedMovies: result
             })
+            toast.message('Removed from your favorites')
         } catch (error) {
             console.log(error)
         }
