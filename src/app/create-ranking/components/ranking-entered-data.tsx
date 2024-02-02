@@ -8,7 +8,7 @@ import {
     HoverCardTrigger,
 } from "@/components/ui/hover-card"
 
-interface SelectedMoviesProps {
+interface IRankingEnteredData {
     selectedMovies: Movie[],
     rankingReady: boolean,
     nameOfRanking: string,
@@ -19,7 +19,7 @@ interface SelectedMoviesProps {
     updateRankingName: () => void
 }
 
-const SelectedMovies = ({
+const RankingEnteredData = ({
     selectedMovies,
     rankingReady,
     nameOfRanking,
@@ -28,7 +28,7 @@ const SelectedMovies = ({
     changeRankingName,
     submitNameOfRanking,
     updateRankingName
-}: SelectedMoviesProps) => {
+}: IRankingEnteredData) => {
 
     return (
         <div className="flex flex-col my-2">
@@ -83,4 +83,4 @@ const SelectedMovies = ({
     );
 }
 
-export default SelectedMovies;
+export default RankingEnteredData;
