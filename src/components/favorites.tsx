@@ -26,6 +26,7 @@ const Favorites = ({ favorites, removeFromFavorites }: FavoritesProps) => {
                                 animate={{ opacity: 1 }}
                                 initial={{ opacity: 0 }}
                                 exit={{ opacity: 0 }}
+                                key={item.id}
                             >
                                 <div>
                                     <CustomContainer
