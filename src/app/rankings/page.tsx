@@ -6,6 +6,7 @@ import SearchNav from "@/components/search-movies";
 import { UserAuth } from "@/context/auth-context";
 import useSavedMovies from "@/hooks/use-saved-movies";
 import { redirect } from "next/navigation";
+import { Toaster } from "sonner";
 
 const RankingsPage = () => {
   const { user } = UserAuth()
@@ -18,6 +19,7 @@ const RankingsPage = () => {
 
   return (
     <>
+      <Toaster />
       <header className="sm:hidden">
         <SearchNav />
       </header>
