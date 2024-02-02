@@ -17,7 +17,7 @@ const CardMovie = ({ item }: CardMovieProps) => {
 
     const { user } = UserAuth()
 
-    const { favorites } = useSavedMovies()
+    const { favorites, removeFromFavorites } = useSavedMovies()
 
     const loginModal = useLoginModal()
 
@@ -36,18 +36,6 @@ const CardMovie = ({ item }: CardMovieProps) => {
             }).then(() => {
                 toast.message(`Added to your favorites: ${item.title}`)
             })
-        }
-    }
-
-    const removeFromFavorites = async (movieId: string | number) => {
-        try {
-            const result = favorites?.filter((item: any) => item.id !== movieId)
-            await updateDoc(movieRef, {
-                savedMovies: result
-            })
-            toast.message('Removed from your favorites')
-        } catch (error) {
-            console.log(error)
         }
     }
 
