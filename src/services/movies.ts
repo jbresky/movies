@@ -9,7 +9,6 @@ export async function getTopMovies() {
             id: movie.id,
             title: movie.title,
             img: movie.poster_path,
-            // overview: movie.overview
         }))
     } catch (e) {
         throw new Error('Error searching movies')
@@ -26,22 +25,6 @@ export async function getTitle(title: string) {
             title: movie.title,
             img: movie.poster_path,
             // overview: movie.overview
-        }))
-
-    } catch (e) {
-        throw new Error('Error searching movies')
-    }
-}
-
-export async function getGenre(id: string) {
-    try {
-        const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${id}&language=en-US&page=1`)
-        const movies = await res.json()
-        
-        return movies?.results.map((movie: any) => ({
-            id: movie.id,
-            title: movie.title,
-            img: movie.poster_path,
         }))
 
     } catch (e) {
