@@ -2,16 +2,37 @@
 
 import { UserAuth } from "@/context/auth-context";
 import { db } from "@/firebase";
-import { arrayRemove, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { arrayRemove, arrayUnion, collection, doc, getDocs, onSnapshot, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import useLoginModal from "./use-login-modal";
 
 const useSavedMovies = () => {
-    const [favorites, setFavorites] = useState([])
-    const [rankings, setRanking] = useState<any>([])
+    const [favorites, setFavorites] = useState<Movie[]>([])
+    const [rankings, setRanking] = useState<Movie[]>([])
     const [loadingMovies, setLoadingMovies] = useState(false)
+    const [users, setUsers] = useState<any>([])
 
     const { user } = UserAuth()
+
+    const loginModal = useLoginModal()
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'users'));
+                const usersData = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setUsers(usersData);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
 
     useEffect(() => {
         const fetchMovies = () => {
@@ -57,8 +78,24 @@ const useSavedMovies = () => {
         }
     }
 
+    const saveMovie = async ({ id, title, img }: Movie) => {
+        if (!user?.email) {
+            loginModal.onOpen()
+        } else {
+            await updateDoc(movieRef, {
+                savedMovies: arrayUnion({
+                    id: id,
+                    title: title,
+                    img: img
+                })
+            }).then(() => {
+                toast.message(`Added to your favorites: ${title}`)
+            })
+        }
+    }
+
     return {
-        favorites, rankings, removeFromFavorites, removeRanking, loadingMovies
+        favorites, rankings, removeFromFavorites, removeRanking, loadingMovies, users, saveMovie
     }
 }
 
