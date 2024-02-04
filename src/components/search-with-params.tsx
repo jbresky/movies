@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation"
 import { FaSearch } from "react-icons/fa"
 
-const Search = () => {
+const SearchWithParams = () => {
 
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -34,4 +34,4 @@ const Search = () => {
      );
 }
  
-export default Search;
+export default SearchWithParams;

@@ -1,6 +1,6 @@
 'use client'
 
-import Favorites from "@/components/favorites"
+import Favorites from "@/components/containers/favorites"
 import Loader from "@/components/loader"
 import SearchM from "@/components/search-movies"
 import { UserAuth } from "@/context/auth-context"

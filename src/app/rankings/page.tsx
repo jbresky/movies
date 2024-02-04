@@ -1,6 +1,6 @@
 'use client'
 
-import Rankings from "@/components/rankings";
+import Rankings from "@/components/containers/rankings";
 import Loader from "@/components/loader";
 import SearchNav from "@/components/search-movies";
 import { UserAuth } from "@/context/auth-context";

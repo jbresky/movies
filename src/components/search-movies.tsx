@@ -1,10 +1,10 @@
 'use client'
 
-import MobileDrawer from "./drawer";
+import MobileDrawer from "./mobile/drawer";
 import { ChangeEvent, FormEvent } from 'react';
 import { FaSearch } from 'react-icons/fa'
-import Search from "./search";
 import Link from "next/link";
+import SearchWithParams from "./search-with-params";
 
 interface ISearch {
   showBox?: boolean,
@@ -14,7 +14,7 @@ interface ISearch {
   changeSearch?: (e: ChangeEvent<HTMLInputElement>) => void,
 }
 
-const SearchM = ({ showBox, isClient, submitSearch, title, changeSearch }: ISearch) => {
+const SearchMovies = ({ showBox, isClient, submitSearch, title, changeSearch }: ISearch) => {
 
   return (
     <>
@@ -48,7 +48,7 @@ const SearchM = ({ showBox, isClient, submitSearch, title, changeSearch }: ISear
                 )
                 :
                 (
-                  <Search />
+                  <SearchWithParams />
                 )
             ) : null
           }
@@ -60,4 +60,4 @@ const SearchM = ({ showBox, isClient, submitSearch, title, changeSearch }: ISear
   );
 }
 
-export default SearchM;
+export default SearchMovies;

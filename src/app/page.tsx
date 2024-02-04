@@ -1,7 +1,7 @@
 import { Toaster } from 'sonner'
 import { getTitle, getTopMovies } from "@/services/movies"
 import SearchM from "@/components/search-movies"
-import Movies from '@/components/movies'
+import Movies from '@/components/containers/movies'
 
 export default async function Home({ searchParams }: { searchParams: { title: string } }) {
 
