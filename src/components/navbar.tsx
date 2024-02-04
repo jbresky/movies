@@ -1,7 +1,6 @@
 'use client'
 
-import useLoginModal from '@/hooks/use-login-modal';
-import useRegisterModal from '@/hooks/use-register-modal';
+import { useLoginModal, useRegisterModal } from "@/hooks/use-session-modals";
 import { UserAuth } from '@/context/auth-context';
 import Link from 'next/link';
 import Dropdown from './nav-dropdown';

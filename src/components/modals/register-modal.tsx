@@ -1,8 +1,7 @@
 'use client'
 
 import { UserAuth } from "@/context/auth-context"
-import useLoginModal from "@/hooks/use-login-modal"
-import useRegisterModal from "@/hooks/use-register-modal"
+import { useLoginModal, useRegisterModal } from "@/hooks/use-session-modals";
 import { FormEvent, useCallback, useRef, useState } from "react"
 import Modal from "./modal"
 import { FcGoogle } from 'react-icons/fc'

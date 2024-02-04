@@ -13,8 +13,7 @@ import {
 } from "@/components/ui/drawer"
 
 import { UserAuth } from "@/context/auth-context";
-import useLoginModal from "@/hooks/use-login-modal";
-import useRegisterModal from "@/hooks/use-register-modal";
+import { useLoginModal, useRegisterModal } from "@/hooks/use-session-modals";
 
 const MobileDrawer = () => {
     const { user, logOut } = UserAuth()

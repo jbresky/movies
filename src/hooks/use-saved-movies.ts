@@ -5,7 +5,7 @@ import { db } from "@/firebase";
 import { arrayRemove, arrayUnion, collection, doc, getDocs, onSnapshot, updateDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import useLoginModal from "./use-login-modal";
+import {useLoginModal} from "./use-session-modals";
 
 const useSavedMovies = () => {
     const [favorites, setFavorites] = useState<Movie[]>([])
