@@ -1,11 +1,13 @@
 'use client'
 
 import { getTitle, getTopMovies } from "@/services/movies"
-import { useCallback, useState } from "react"
+import { ChangeEvent, FormEvent, useCallback, useState } from "react"
 
 export default function useMovies() {
     const [movies, setMovies] = useState<any>([])
     const [loading, setLoading] = useState(false)
+    const [title, setTitle] = useState('')
+    const [movieSearched, setMovieSearched] = useState('')
 
     const getOneMovie = useCallback(async ({ title }: any) => {
         try {
@@ -31,7 +33,24 @@ export default function useMovies() {
         }
     }, [])
 
+    const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value);
+    };
+
+    const submitSearch = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        getOneMovie({ title })
+        setMovieSearched(title)
+    }
+
     return {
-        movies, getOneMovie, loading, getTopRanked
+        movies,
+        getOneMovie,
+        getTopRanked,
+        loading,
+        changeSearch,
+        submitSearch,
+        movieSearched,
+        title
     }
 }

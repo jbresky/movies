@@ -58,24 +58,24 @@ const useCreate = () => {
         dispatch({ type: 'SET_RANKING_READY', payload: true })
     }
 
-    const addToRanking = ({ item }: { item: Movie }) => {
+    const addToRanking = (item: Movie) => {
         const isSelected = state.selectedMovies.some((movie: any) => movie.id == item.id)
 
         if (state.selectedMovies.length === 10) {
-            toast.message('10 movies are the maximum')
+            toast.error('10 movies are the maximum')
             return
         }
         if (!isSelected) {
             dispatch({ type: 'ADD_TO_RANKING', payload: item })
         } else {
-            toast.message('Movie already selected')
+            toast.error('Movie already selected')
             return
         }
     }
 
     const changeRankingName = (e: ChangeEvent<HTMLInputElement>) => {
         if (state.nameOfRanking.length > 32) {
-            toast.message('Maximum character limit is 32 characters')
+            toast.error('Maximum character limit is 32 characters')
         }
         dispatch({ type: 'SET_NAME', payload: e.target.value })
     }
