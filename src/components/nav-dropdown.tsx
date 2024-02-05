@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Image from "next/image";
 import Link from "next/link";
-import { FaCircleUser } from "react-icons/fa6";
 import { IoMdMenu } from "react-icons/io";
 
 interface IDropdown {
@@ -17,7 +16,6 @@ interface IDropdown {
 }
 
 const NavDropdown = ({ user, handleLogout }: IDropdown) => {
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
@@ -66,9 +64,9 @@ const NavDropdown = ({ user, handleLogout }: IDropdown) => {
                         Rankings
                     </DropdownMenuItem>
                 </Link>
-                <Link href='/folders'>
+                <Link href='/collections'>
                     <DropdownMenuItem className="cursor-pointer">
-                        Folders
+                        Collections
                     </DropdownMenuItem>
                 </Link>
                 <DropdownMenuItem>
