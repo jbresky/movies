@@ -13,7 +13,7 @@ interface RankingsProps {
 const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
 
     return (
-        <section className="flex flex-col gap-6">
+        <section className="flex flex-col gap-4">
             <div className="flex flex-col xsm:flex-row gap-2 justify-between xsm:items-end text-[15px]">
                 <SectionHeader
                     data={rankings}
@@ -30,7 +30,7 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
                             <>
                                 <DropdownMenu>
                                     <DropdownMenuTrigger>
-                                        <TiArrowSortedDown className="text-2xl text-indigo-300" />
+                                        <TiArrowSortedDown className="text-2xl text-indigo-400" />
                                     </DropdownMenuTrigger>
                                     <DropdownMenuContent className="absolute right-[-10px]">
                                         <DropdownMenuItem>
@@ -51,7 +51,7 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
                             </>
                         </div>
 
-                        <div className="flex whitespace-nowrap overflow-x-auto scroll-smooth sm:grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-4 max-md:border-2 max-md:p-2 border-grayth rounded-lg border-dotted">
+                        <div className="flex whitespace-nowrap overflow-x-auto scroll-smooth sm:grid grid-cols-2 xsm:grid-cols-3 s:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-3 mb-4 max-md:border-2 max-md:p-2 border-grayth rounded-lg border-dotted">
                             {rank.movies && rank.movies.map((item: any, index: number) => (
                                         <div key={item.id}>
                                             <CustomContainer
@@ -59,7 +59,7 @@ const Rankings = ({ rankings, removeRanking }: RankingsProps) => {
                                                 isRank={true}
                                                 index={index + 1}
                                                 isScrollable={true}
-                                                classname="text-indigo-600/90 font-bold text-2xl xl:text-3xl p-4 border-[1px] flex items-center rounded-full w-[50px] h-[50px] justify-center bg-indigo-400/30 border-transparent hover:opacity-60 transition duration-200 cursor-pointer absolute top-3 right-3"
+                                                classname="text-indigo-400 text-xl p-4 font-semibold border-[1px] flex items-center rounded-full w-[35px] h-[35px] justify-center bg-indigo-400/30 border-transparent absolute top-3 right-3"
                                             />
                                         </div>
                             ))}

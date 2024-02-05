@@ -17,7 +17,7 @@ const Favorites = ({ favorites, removeFromFavorites }: FavoritesProps) => {
                 title="Favorites"
                 paragraph="You don't have favorites yet"
             />
-            <div className="flex whitespace-nowrap rounded-md overflow-x-auto scroll-smooth sm:grid grid-cols-2 s:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <div className="flex whitespace-nowrap rounded-md overflow-x-auto scroll-smooth sm:grid grid-cols-2 xsm:grid-cols-3 s:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-3">
                 {
                     favorites?.map((item: any) => (
                         <AnimatePresence

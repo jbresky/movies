@@ -41,7 +41,7 @@ const CreateRanking = () => {
                 createRankingProps={createRankingProps}
                 movieSearched={movieSearched} />
 
-            <main className='py-2'>
+            <main className='my-6'>
                 {
                     loading ? (
                         <Loader />

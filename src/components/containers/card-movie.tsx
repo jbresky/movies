@@ -12,7 +12,7 @@ const CardMovie = ({ item }: { item: Movie }) => {
     const isFavorite = favorites && favorites.some((movie: Movie) => movie.id === item.id)
 
     return (
-        <div className="w-[80%] 2xsm:w-full flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap">
+        <div className="w-[80%] 2xsm:w-full flex flex-col gap-2 text-ellipsis overflow-hidden whitespace-nowrap pb-2">
             {item.img !== null && (
                 <>
                     <div

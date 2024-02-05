@@ -22,7 +22,7 @@ const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRa
                 <div
                     ref={ref}
                     onClick={addToRanking}
-                    className="relative border-[1px] w-full hover:shadow-neutral-800/50 shadow-lg border-transparent transition duration-800 cursor-pointer hover:border-grayth rounded-md">
+                    className="relative border-[1px] w-full hover:shadow-neutral-800/50 shadow-lg border-transparent transition duration-800 hover:border-grayth rounded-md">
                     <Image
                         src={`https://image.tmdb.org/t/p/original/${item.img}`}
                         alt={item.title}
@@ -45,7 +45,7 @@ const CustomContainer = ({ item, classname, isRank, removeFromFavorites, addToRa
                         )
                     }
                 </div>
-                <p className="leading-5 font-medium text-sm">{item.title}</p>
+                <p className="lg:leading-5 font-medium text-sm max-sm:text-[12px]">{item.title}</p>
             </div>
         </>
     )

@@ -7,7 +7,7 @@ const Movies = ({ movies }: { movies: Movie[] }) => {
           {
           movies.length > 0
             ? (
-              <div className='max-2xsm:flex flex-col items-center justify-center grid grid-cols-2 s:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 py-4 justify-items-center'>
+              <div className='max-2xsm:flex flex-col items-center justify-center grid grid-cols-2 xsm:grid-cols-3 s:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 gap-3 py-4 justify-items-center'>
                 {movies.map((item: Movie) => (
                   !movies
                     ? (
