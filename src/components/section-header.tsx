@@ -7,7 +7,7 @@ interface HeaderProps {
 const SectionHeader = ({data, title, paragraph}: HeaderProps) => {
     return ( 
         <div className="flex flex-col gap-2 items-start">
-        <h2 className="text-xl md:text-xl font-semibold">{title}</h2>
+        <h2 className="text-xl 2xl:text-4xl font-semibold">{title}</h2>
         {data?.length < 1 && (
             <p>{paragraph}</p>
         )}
