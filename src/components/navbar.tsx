@@ -3,7 +3,7 @@
 import { useLoginModal, useRegisterModal } from "@/hooks/use-session-modals";
 import { UserAuth } from '@/context/auth-context';
 import Link from 'next/link';
-import Dropdown from './nav-dropdown';
+import NavDropdown from './nav-dropdown';
 import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
@@ -30,7 +30,7 @@ const Navbar = () => {
 
         {user && user?.email
           ? (
-            <Dropdown
+            <NavDropdown
               user={user}
               handleLogout={handleLogout}
             />
