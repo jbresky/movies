@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { SlArrowRight } from "react-icons/sl";
 
-const LinkTo = ({ route }: { route: string }) => {
+const LinkTo = ({ href, route }: { href: string, route: string }) => {
     return (
-        <Link href={`/${route}`} className="flex items-center gap-2 justify-between text-neutral-400">
+        <Link href={`/${href}`} className="flex items-center gap-2 justify-between text-neutral-400">
             <span>
-                Profile
+                {route}
             </span>
             <span className="text-[11px]">
                 <SlArrowRight />
@@ -17,11 +17,11 @@ const LinkTo = ({ route }: { route: string }) => {
 const DrawerLinks = ({ handleLogout }: { handleLogout: () => void }) => {
     return (
         <>
-           <LinkTo route="account"/>
-           <LinkTo route="create-ranking"/>
-           <LinkTo route="favorites"/>
-           <LinkTo route="rankings"/>
-           <LinkTo route="collections"/>
+            <LinkTo route='Account' href="account" />
+            <LinkTo route='Create Ranking' href="create-ranking" />
+            <LinkTo route='Favorites' href="favorites" />
+            <LinkTo route='Rankings' href="rankings" />
+            <LinkTo route='Collections' href="collections" />
 
             <button className="flex items-center gap-2 justify-between text-[#d5322d]" onClick={handleLogout}>
                 <span>
