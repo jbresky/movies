@@ -31,3 +31,14 @@ export async function getTitle(title: string) {
         throw new Error('Error searching movies')
     }
 }
+
+export async function getMovieById(id: number) {
+    try {
+        const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+        const movie = await res.json()
+
+        return movie
+    } catch (e) {
+        throw new Error('Error searching movie')
+    }
+}
