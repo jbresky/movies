@@ -7,7 +7,7 @@ import RenderFavoriteIcon from "../render-favorite-icon";
 const CardMovie = ({ item }: { item: Movie }) => {
     const headersList = headers()
     const pathname = headersList.get("x-pathname")
-    const url = new URL(pathname ? pathname : "/", process.env.VERCEL_URL)
+    const url = new URL(pathname ? pathname : "/", "/")
     url.searchParams.set("modal", "true")
     url.searchParams.set("id", item.id.toString())
 
