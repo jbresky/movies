@@ -1,21 +1,20 @@
 'use client'
 
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import useSavedMovies from "@/hooks/use-saved-movies";
 
-interface Props {
-    isFavorite: boolean,
-    removeFromFavorites: (id: string) => void,
-    item: Movie,
-    saveMovie: (item: Movie) => void
-}
+const RenderFavoriteIcon = ({ item, isInModal }: { item: Movie, isInModal?: boolean }) => {
 
-const RenderFavoriteIcon = ({ isFavorite, removeFromFavorites, item, saveMovie }: Props) => {
+    const { favorites, removeFromFavorites, saveMovie } = useSavedMovies()
+
+    const isFavorite = favorites && favorites.some((movie: Movie) => movie.id === item.id)
+
     const IconComponent = isFavorite ? FaHeart : FaRegHeart;
 
     return (
         <IconComponent
             onClick={() => isFavorite ? removeFromFavorites(item.id) : saveMovie(item)}
-            className={`text-xl hover:opacity-80 transition duration-200 cursor-pointer absolute top-3 right-3 ${isFavorite ? 'text-red-800' : 'text-gray-400 hover:text-gray-400'
+            className={`text-xl hover:opacity-80 transition duration-200 cursor-pointer ${isInModal ? 'inherit' : 'absolute'} top-3 right-3 ${isFavorite ? 'text-red-800' : 'text-gray-400 hover:text-gray-400'
                 }`}
         />
     );
