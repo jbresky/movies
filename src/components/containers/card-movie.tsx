@@ -4,7 +4,7 @@ import { headers } from "next/headers"
 import Link from "next/link";
 import RenderFavoriteIcon from "../render-favorite-icon";
 
-const BASE_URL = process.env.NODE_ENV == 'production' ? process.env.VERCEL_URL! : "http://localhost:3000"
+const BASE_URL = process.env.NODE_ENV == 'production' ? "https://movies-jbresky.vercel.app/" : "http://localhost:3000"
 
 const CardMovie = ({ item }: { item: Movie }) => {
     const headersList = headers()
